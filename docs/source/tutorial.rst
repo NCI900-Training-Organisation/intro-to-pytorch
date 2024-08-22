@@ -46,12 +46,6 @@ will be provided for you during the session.
 
     tutorial/getting_started
     tutorial/basics
-    tutorial/jobs
-    tutorial/highlevel
-    tutorial/vector
-    tutorial/multicore
-    tutorial/gpu
-    tutorial/multinode
 
 
 

@@ -2,11 +2,10 @@ Python Virtual Environment
 ==========================
 
 .. note::
- 1.  python-papi
- 2.  numpy
- 3.  codetiming
- 4.  numba
- 5.  mpi4py
+ 1.  torch  
+ 2.  torchvision
+ 3.  torchaudio
+
 
 In this workshop, we will use a Python virtual environment to manage all the required Python packages. A Python virtual environment is an isolated 
 workspace that allows you to manage project-specific dependencies without affecting the global Python installation or other projects. By creating a 

@@ -1,8 +1,6 @@
 Getting Started
 ===============
 
-
-
 To access the Gadi system, follow these steps:
 
 1. **SSH into the Gadi system**:
@@ -37,9 +35,8 @@ To access the Gadi system, follow these steps:
     .. code-block:: console
         :linenos:
 
-        git clone https://github.com/NCI900-Training-Organisation/intro-to-parallel-programming.git
-        cd intro-to-parallel-programming
-        git checkout python-dev
+        git clone https://github.com/NCI900-Training-Organisation/intro-to-pytorch.git
+        cd intro-to-pytorch.git
   
 
 
