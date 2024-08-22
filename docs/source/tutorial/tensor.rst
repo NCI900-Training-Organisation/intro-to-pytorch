@@ -64,7 +64,17 @@ Tensor Attributes
     print(f"Device tensor is stored on: {y_tensor.device}")
 
 
-*Automatic differentiation* is one of the main characteristics that differentiate numpy arrays from tensors. 
+*Automatic differentiation* is a key feature that distinguishes tensors from NumPy arrays. This capability
+is particularly useful in neural networks, where model weights are adjusted during backpropagation based 
+on the gradient of the loss function with respect to each parameter. Tensors support automatic gradient 
+computation for any computational graph. For example, consider the computational graph of a one-layer 
+neural network:
+
+
+.. image:: ../figs/loss.png
+
+In this context, **w** and **b** are the parameters that need to be optimized. Therefore, we compute 
+the gradients of the loss function with respect to these variables.
 
 .. math::
 
@@ -73,6 +83,8 @@ Tensor Attributes
     g1 = \frac{\partial loss}{\partial w} 
 
     g2 = \frac{\partial loss}{\partial b} 
+
+Tensors make this process quite straightforward:
 
 .. code-block:: python
     :linenos:
@@ -88,8 +100,6 @@ Tensor Attributes
     loss = torch.nn.functional.binary_cross_entropy_with_logits(z, y)
 
 
-
-
 .. admonition:: Exercise
    :class: todo
 
@@ -98,7 +108,8 @@ Tensor Attributes
 .. admonition:: Key Points
    :class: hint
 
-    #. Tensors can be created in different 
+    #. In PyTorch, we can create tensors using various techniques.   
+    #. Automatic differentiation is simple with tensors in PyTorch.
 
 
 
