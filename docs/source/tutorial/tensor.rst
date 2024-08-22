@@ -88,6 +88,8 @@ Tensor Attributes
     loss = torch.nn.functional.binary_cross_entropy_with_logits(z, y)
 
 
+
+
 .. admonition:: Exercise
    :class: todo
 
