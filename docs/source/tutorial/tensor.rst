@@ -64,11 +64,15 @@ Tensor Attributes
     print(f"Device tensor is stored on: {y_tensor.device}")
 
 
-Automatic differentiation is one of the main characteristics that differentiate numpy arrays from tensors. 
+*Automatic differentiation* is one of the main characteristics that differentiate numpy arrays from tensors. 
 
 .. math::
 
-   \frac{ \sum_{t=0}^{N}f(t,k) }{N}
+    y_{i} = x_{i}^{2} + 1
+
+    eq = \sum_{i=0}^{N-1} y_{i}
+
+    \frac{\partial y_{i}}{\partial x_{i}} = 2x_{i}
 
 .. admonition:: Exercise
    :class: todo
