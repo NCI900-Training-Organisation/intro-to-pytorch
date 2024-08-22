@@ -68,11 +68,25 @@ Tensor Attributes
 
 .. math::
 
-    y_{i} = x_{i}^{2} + 1
+    z = x * w + b
 
-    eq = \sum_{i=0}^{N-1} y_{i}
+    g1 = \frac{\partial loss}{\partial w} 
 
-    \frac{\partial y_{i}}{\partial x_{i}} = 2x_{i}
+    g2 = \frac{\partial loss}{\partial b} 
+
+.. code-block:: python
+    :linenos:
+
+    x = torch.ones(5)  # input tensor
+    y = torch.zeros(3)  # expected output
+
+    w = torch.randn(5, 3, requires_grad=True)
+    b = torch.randn(3, requires_grad=True)
+
+    z = torch.matmul(x, w)+b
+
+    loss = torch.nn.functional.binary_cross_entropy_with_logits(z, y)
+
 
 .. admonition:: Exercise
    :class: todo
