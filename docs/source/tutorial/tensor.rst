@@ -17,6 +17,9 @@ Tensor
 Tensors are specialized data structures used in PyTorch to represent model inputs, outputs, and parameters. While they are conceptually similar to 
 arrays and matrices, they offer additional features such as support for hardware accelerators like GPUs and automatic differentiation.
 
+Creating a Tensor
+*****************
+
 A tensor can be created in multiple ways:
 
 1. Directly from data
@@ -44,21 +47,38 @@ A tensor can be created in multiple ways:
     y_tensor = torch.rand_like(x_data, dtype=torch.float) 
 
 
-.. admonition:: Explanations
-   :class: note
+.. admonition:: Explanation
+   :class: attention
 
-   torch.rand_like returns a tensor with the same size as input that but filled with random numbers from the interval [0,1).
+   **torch.rand_like()** returns a tensor with the same size as input that but filled with random numbers from the interval [0,1).
 
 
-**Exercise** : Try the notebook *tensor.ipynb*.
+Tensor Attributes
+*****************
+
+.. code-block:: python
+    :linenos:
+
+    print(f"Shape of tensor: {y_tensor.shape}")
+    print(f"Datatype of tensor: {y_tensor.dtype}")
+    print(f"Device tensor is stored on: {y_tensor.device}")
+
+
+Automatic differentiation is one of the main characteristics that differentiate numpy arrays from tensors. 
+
+.. math::
+
+   \frac{ \sum_{t=0}^{N}f(t,k) }{N}
+
+.. admonition:: Exercise
+   :class: todo
+
+    Try the notebook *tensors.ipynb*.
 
 .. admonition:: Key Points
    :class: hint
 
-    #. Processes are isolated with separate memory spaces, while threads share the same memory space within a process.
-    #. Processes have higher creation and management overhead due to separate resources and memory, whereas threads are lighter and cheaper to manage.
-    #. Threads can communicate easily and efficiently since they share memory, while processes require more complex and resource-intensive Inter-Process Communication (IPC) mechanisms.
-    #. Locks can be used for synchronization.
+    #. Tensors can be created in different 
 
 
 
