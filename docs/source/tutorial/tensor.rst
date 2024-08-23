@@ -1,17 +1,16 @@
 Tensor
-------
+=======
 
 .. admonition:: Overview
    :class: Overview
 
-    * **Tutorial:** 15 min
+    * **Tutorial:** 20 min
     * **Exercises:** 15 min
 
         **Objectives:**
             #. Learn about tensors.
             #. Learn the differences between a tensor and NumPy array.
-
-
+            #. Learn how to move tensors to GPUs.
 
 
 Tensors are specialized data structures used in PyTorch to represent model inputs, outputs, and parameters. While they are conceptually similar to 
@@ -151,7 +150,23 @@ the other.
 Moving Tensor to GPU
 *********************
 
+It's always wise to check for GPU availability before performing any GPU operations. If a GPU is available,
+we can move our tensor to it.
 
+.. code-block:: python
+    :linenos:
+
+    tensor = tensor.to("cuda")
+
+A better approach is to set the default device before starting any computations.
+
+.. code-block:: python
+    :linenos:
+
+    device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+    tensor = tensor.to(device)
+    
+This way, your code will work regardless of whether a GPU is available or not.
 
 Tensor Attributes
 *****************
@@ -213,8 +228,9 @@ Tensors make this process quite straightforward:
 .. admonition:: Key Points
    :class: hint
 
-    #. In PyTorch, we can create tensors using various techniques.   
-    #. Automatic differentiation is simple with tensors in PyTorch.
+    #. Tensors in PyTorch can be created using various methods.
+    #. Moving tensors to GPUs can be done in a device-agnostic manner.
+    #. Automatic differentiation is straightforward with tensors in PyTorch.
 
 
 
