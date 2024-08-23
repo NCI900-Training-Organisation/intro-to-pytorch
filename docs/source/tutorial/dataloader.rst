@@ -38,3 +38,16 @@ Load the testing data:
         transform=ToTensor() # transformations applied to the features and labels
     )
 
+Custom Dataset
+==============
+
+What if working with a custom dataset? To illustrate this, we will download a dataset and set it up for
+use in PyTorch training.
+
+.. admonition:: Explanation
+   :class: attention
+
+   The data used for this demonstration is relatively *clean*. In a practical use case, significant 
+   time will likely be spent on cleaning and preparing the data..
+
+

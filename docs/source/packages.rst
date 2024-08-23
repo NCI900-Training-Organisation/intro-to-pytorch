@@ -9,6 +9,7 @@ Python Virtual Environment
     #. NumPy
     #. Matplotlib
     #. jupyterlab
+    #. pandas
 
 
 In this workshop, we will use a Python virtual environment to manage all the required Python packages. A Python virtual environment is an isolated 
