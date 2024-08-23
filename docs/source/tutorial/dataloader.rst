@@ -37,3 +37,4 @@ Load the testing data:
         download=True,       # download the data if unvailable at the `root`
         transform=ToTensor() # transformations applied to the features and labels
     )
+

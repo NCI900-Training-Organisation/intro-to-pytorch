@@ -2,9 +2,13 @@ Python Virtual Environment
 ==========================
 
 .. note::
- 1.  torch  
- 2.  torchvision
- 3.  torchaudio
+
+    #. torch  
+    #. torchvision
+    #. torchaudio
+    #. NumPy
+    #. Matplotlib
+    #. jupyterlab
 
 
 In this workshop, we will use a Python virtual environment to manage all the required Python packages. A Python virtual environment is an isolated 
@@ -42,6 +46,9 @@ Install all the required Python packages.
     :linenos:
 
     python3 -m pip install python-papi numpy codetiming numba mpi4py
+    python3 -m pip install torch torchvision torchaudio
+    python3 -m pip install jupyterlab
+    python3 -m pip install matplotlib
 
 You can deactivate the virtual environment once you are done with it.
 
