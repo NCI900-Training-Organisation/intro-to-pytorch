@@ -36,15 +36,15 @@ A tensor can be created in multiple ways:
     :linenos:
 
     x_np = np.array(data)
-    x_tensor = torch.from_NumPy(x_np)
+    x_tensor = torch.from_numpy(x_np)
 
 3. From another Tensor
 
 .. code-block:: python
     :linenos:
 
-    x_tensor = torch.ones_like(x_data)
-    y_tensor = torch.rand_like(x_data, dtype=torch.float) 
+    x_tensor = torch.ones_like(x_tensor)
+    y_tensor = torch.rand_like(x_tensor, dtype=torch.float) 
 
 
 .. admonition:: Explanation
@@ -95,7 +95,7 @@ Tensors can perform almost all operations a NumPy array can perform
     y2_tensor = x_tensor.matmul(x_tensor.T)
 
     y3_tensor = torch.rand_like(y1_tensor)
-    torch.matmul(x_tensor, x_tensor.T, out=y3)
+    torch.matmul(x_tensor, x_tensor.T, out=y3_tensor)
 
 
     # Element-wise multiplication
@@ -139,7 +139,10 @@ the other.
     print(f"n: {x_np}")
 
     y_np = np.ones(5)
+    z_np = np.zeros(5)
     y_tensor = torch.from_numpy(y_np) # numpy to tensor
+
+    np.add(y_np, 1, out=z_np)
 
     np.add(y_np, 1, out=n)
 
@@ -164,7 +167,7 @@ A better approach is to set the default device before starting any computations.
     :linenos:
 
     device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
-    x_tensor_gpu = x_tensor.to(device)
+    y_tensor_gpu = y_tensor.to(device)
     
 This way, your code will work regardless of whether a GPU is available or not.
 
@@ -210,11 +213,11 @@ Tensors make this process quite straightforward:
     w_tensor = torch.randn(5, 3, requires_grad=True)
     b_tensor = torch.randn(3, requires_grad=True)
 
-    z_tensor = torch.matmul(x, w)+b
+    z_tensor = torch.matmul(x_tensor, w_tensor) + b_tensor
 
     loss_tensor = torch.nn.functional.binary_cross_entropy_with_logits(z_tensor, y_tensor)
+    loss_tensor.backward()
 
-    loss.backward()
     print(w_tensor.grad)
     print(b_tensor.grad)
 
