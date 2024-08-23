@@ -15,31 +15,31 @@ will be provided for you during the session.
   * - Tensors
     - 20 minutes
     - 10 minutes
-    - 10 minutes
-  * - 
-    - 10 minutes
-    - 10 minutes
-    - 20 minutes
-  * - 
-    - 20 minutes
+    - 30 minutes
+  * - Loading a Dataset
     - 15 minutes
-    - 35 minutes
-  * - 
-    - 20 minutes
-    - 10 minutes
+    - 15 minutes
     - 30 minutes
   * - 
-    - 20 minutes
-    - 10 minutes
-    - 30 minutes
+    - 00 minutes
+    - 00 minutes
+    - 00 minutes
   * - 
-    - 30 minutes
-    - 15 minutes
-    - 45 minutes
+    - 00 minutes
+    - 00 minutes
+    - 00 minutes
   * - 
-    - 20 minutes
-    - 15 minutes
-    - 35 minutes
+    - 00 minutes
+    - 00 minutes
+    - 00 minutes
+  * - 
+    - 00 minutes
+    - 00 minutes
+    - 00 minutes
+  * - 
+    - 00 minutes
+    - 00 minutes
+    - 00 minutes
 
 
 .. toctree::

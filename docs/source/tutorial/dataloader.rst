@@ -1,6 +1,16 @@
 Loading a Dataset in PyTorch
 =============================
 
+.. admonition:: Overview
+   :class: Overview
+
+    * **Tutorial:** 15 min
+    * **Exercises:** 15 min
+
+        **Objectives:**
+            #. Learn how to use pre-loaded data in PyTorch.
+            #. Learn how to use custom data in PyTorch.
+
 PyTorch offers two data primitives—`torch.utils.data.DataLoader` and `torch.utils.data.Dataset`— which 
 facilitate the use of both pre-loaded datasets and custom data.
 
