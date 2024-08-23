@@ -1,5 +1,5 @@
-Tensor
-=======
+Tensors in PyTorch
+===================
 
 .. admonition:: Overview
    :class: Overview
@@ -64,20 +64,20 @@ Tensors can perform almost all operations a NumPy array can perform
 .. code-block:: python
     :linenos:
 
-    tensor = torch.ones(4, 4)
-    print(f"First row: {tensor[0]}")
-    print(f"First column: {tensor[:, 0]}")
-    print(f"Last column: {tensor[..., -1]}")
-    tensor[:,1] = 0
-    print(tensor)
+    x_tensor = torch.ones(4, 4)
+    print(f"First row: {x_tensor[0]}")
+    print(f"First column: {x_tensor[:, 0]}")
+    print(f"Last column: {x_tensor[..., -1]}")
+    x_tensor[:,1] = 0
+    print(x_tensor)
 
 2. Concatenate multiple tensors
 
 .. code-block:: python
     :linenos:
 
-    t_cat = torch.cat([tensor, tensor, tensor], dim=1)
-    print(t_cat)
+    y_tensor = torch.cat([x_tensor, x_tensor, x_tensor], dim=1)
+    print(y_tensor)
 
 
 3. Arithmetic Operations
@@ -85,39 +85,39 @@ Tensors can perform almost all operations a NumPy array can perform
 .. code-block:: python
     :linenos:
 
-    x = torch.ones(4, 4)
+    x_tensor = torch.ones(4, 4)
 
     # Transpose
-    x_t = tensor.T
+    x_T_tensor = x_tensor.T
 
     # Matrix Multiplication
-    y1 = tensor @ tensor.T
-    y2 = tensor.matmul(tensor.T)
+    y1_tensor = x_tensor @ x_tensor.T
+    y2_tensor = x_tensor.matmul(x_tensor.T)
 
-    y3 = torch.rand_like(y1)
-    torch.matmul(tensor, tensor.T, out=y3)
+    y3_tensor = torch.rand_like(y1_tensor)
+    torch.matmul(x_tensor, x_tensor.T, out=y3)
 
 
     # Element-wise multiplication
-    z1 = tensor * tensor
-    z2 = tensor.mul(tensor)
+    z1_tensor = x_tensor * x_tensor
+    z2_tensor = x_tensor.mul(x_tensor)
 
-    z3 = torch.rand_like(tensor)
-    torch.mul(tensor, tensor, out=z3)
+    z3_tensor = torch.rand_like(x_tensor)
+    torch.mul(x_tensor, x_tensor, out=z3_tensor)
 
 3. In-place Operations
 
 .. code-block:: python
     :linenos:
 
-    x = torch.ones(4, 4)
+    x_tensor = torch.ones(4, 4)
 
     # Transpose
-    x.t_()
+    x_tensor.t_()
 
     # Copy
-    y = torch.rand_like(x)
-    x.copy_(y)
+    y_tensor = torch.rand_like(x_tensor)
+    x_tensor.copy_(y_tensor)
 
 NumPy and Tensor
 ****************
@@ -128,23 +128,23 @@ the other.
 .. code-block:: python
     :linenos:
 
-    x_t = torch.ones(5) 
-    x_n = t.numpy() # tensor to numpy
-    print(f"t: {x_t}")
-    print(f"n: {x_n}")
+    x_tensor = torch.ones(5) 
+    x_np = x_tensor.numpy() # tensor to numpy
+    print(f"t: {x_tensor}")
+    print(f"n: {x_np}")
 
-    x_t.add_(1)
+    x_tensor.add_(1)
 
-    print(f"t: {x_t}")
-    print(f"n: {x_n}")
+    print(f"t: {x_tensor}")
+    print(f"n: {x_np}")
 
-    y_n = np.ones(5)
-    y_t = torch.from_numpy(n) # numpy to tensor
+    y_np = np.ones(5)
+    y_tensor = torch.from_numpy(y_np) # numpy to tensor
 
-    np.add(n, 1, out=n)
+    np.add(y_np, 1, out=n)
 
-    print(f"t: {t}")
-    print(f"n: {n}")
+    print(f"t: {x_tensor}")
+    print(f"n: {x_np}")
 
 
 Moving Tensor to GPU
@@ -156,7 +156,7 @@ we can move our tensor to it.
 .. code-block:: python
     :linenos:
 
-    tensor = tensor.to("cuda")
+    x_tensor_gpu = x_tensor.to("cuda")
 
 A better approach is to set the default device before starting any computations.
 
@@ -164,7 +164,7 @@ A better approach is to set the default device before starting any computations.
     :linenos:
 
     device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
-    tensor = tensor.to(device)
+    x_tensor_gpu = x_tensor.to(device)
     
 This way, your code will work regardless of whether a GPU is available or not.
 
@@ -204,19 +204,19 @@ Tensors make this process quite straightforward:
 .. code-block:: python
     :linenos:
 
-    x = torch.ones(5)  # input tensor
-    y = torch.zeros(3)  # expected output
+    x_tensor = torch.ones(5)  # input tensor
+    y_tensor = torch.zeros(3)  # expected output
 
-    w = torch.randn(5, 3, requires_grad=True)
-    b = torch.randn(3, requires_grad=True)
+    w_tensor = torch.randn(5, 3, requires_grad=True)
+    b_tensor = torch.randn(3, requires_grad=True)
 
-    z = torch.matmul(x, w)+b
+    z_tensor = torch.matmul(x, w)+b
 
-    loss = torch.nn.functional.binary_cross_entropy_with_logits(z, y)
+    loss_tensor = torch.nn.functional.binary_cross_entropy_with_logits(z_tensor, y_tensor)
 
     loss.backward()
-    print(w.grad)
-    print(b.grad)
+    print(w_tensor.grad)
+    print(b_tensor.grad)
 
 
 
