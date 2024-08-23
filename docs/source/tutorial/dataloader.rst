@@ -76,7 +76,7 @@ to your input data. These functions enable you to apply multiple changes simulta
         transforms.Resize(size=(64, 64)), # Resize the images to 64x64
         transforms.RandomHorizontalFlip(p=0.5), # Horizontally flip image with a 0.5 probability
         transforms.ToTensor() # convert to tensor of shape (C x H x W) in the range [0.0, 1.0] 
-])
+    ])
 
 .. admonition:: Explanation
    :class: attention
@@ -134,3 +134,15 @@ Data loader combines a dataset and a sampler, and provides an iterable over the 
    :class: attention
 
    Each tensor will be of size [8, 3, 64, 64] -> [batch_size, channels, height, width].
+
+
+.. admonition:: Exercise
+   :class: todo
+
+    Try the notebook *dataloader.ipynb*.
+
+.. admonition:: Key Points
+   :class: hint
+
+    #. PyTorch provides pre-loaded datasets that can be used directly.
+    #. Custom datasets can also be utilized in PyTorch.
