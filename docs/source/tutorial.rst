@@ -20,10 +20,10 @@ will be provided for you during the session.
     - 15 minutes
     - 15 minutes
     - 30 minutes
-  * - 
-    - 00 minutes
-    - 00 minutes
-    - 00 minutes
+  * - Building a Neural Network
+    - 30 minutes
+    - 15 minutes
+    - 45 minutes
   * - 
     - 00 minutes
     - 00 minutes
@@ -45,8 +45,11 @@ will be provided for you during the session.
 .. toctree::
 
     tutorial/getting_started
+    tutorial/what_is_NN.rst
     tutorial/tensor.rst
     tutorial/dataloader.rst
+    tutorial/multi_gpu.rst
+    tutorial/multi_node.rst
 
 
 

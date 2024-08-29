@@ -6,6 +6,10 @@ Prerequisite
     #. Experience with Jupyter notebooks.
     #. Experience with bash or similar Unix shells.
 
+    It's also beneficial to have a solid understanding of *matrix operations* and *differential calculus*.
+    While this is not required for programming, it is essential for the theoretical aspects of neural 
+    networks.
+
     This workshop assumes that you have experience coding in Python and are familiar with using Unix shell. 
     If you are using a Windows machine please make sure you have a shell that supports SSH. Windows users can either use 
     `PowerShell <https://learn.microsoft.com/en-us/powershell/scripting/windows-powershell/starting-windows-powershell>`_ or the `Windows Subsystem for Linux <https://learn.microsoft.com/en-us/windows/wsl/install>`_ 

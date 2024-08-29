@@ -1,7 +1,7 @@
-Introduction to Parallel Programming Using Python
-=================================================
+Introduction to Neural Networks and PyTorch
+===========================================
 
-This repository provides an introduction to the concepts of parallel programming using Python.
+This workshop provides an introduction to Neural Networks Using Pytorch.
 
 .. note::
 
