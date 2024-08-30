@@ -492,10 +492,10 @@ So, how does backpropagation connect with computational graphs? Let's examine a 
 
    # Backpropagation from the output layer to the last hidden layer
    # assuming we have just two neurons in the layer
-   dW1 += slope_W1(J, W1) # find the slope (derivative) of the cost function with respect to  W1
-   dW2 += slope_W2(J, W2) # find the slope (derivative) of the cost function with respect to  W2
-   db1 += slope_b1(J, b1) # find the slope (derivative) of the cost function with respect to  db1
-   db2 += slope_b2(J, b2) # find the slope (derivative) of the cost function with respect to  db2
+   dW1 += slope_W1(J, W1) # find the slope (derivative) of the cost function wrt W1
+   dW2 += slope_W2(J, W2) # find the slope (derivative) of the cost function wrt W2
+   db1 += slope_b1(J, b1) # find the slope (derivative) of the cost function wrt db1
+   db2 += slope_b2(J, b2) # find the slope (derivative) of the cost function wrt db2
 
    # update the weights and biases
    W1 = W1 - alpha * dW1 # alpha is the learning rate
