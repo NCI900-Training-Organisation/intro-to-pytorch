@@ -160,6 +160,26 @@ feature extraction.
 3. Item Retrieval (`__getitem__``): Retrieves a sample from the dataset given an index. This method is called by the DataLoader to get individual data points 
 for batching.
 
+We will use the Pima Indians Diabetes dataset for the demonstration. The Pima Indians Diabetes dataset is a popular dataset in the field of machine learning 
+and statistics, particularly for those working on classification problems. 
+
+#. **Source**: The dataset was created by the National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK) and is available in the UCI Machine Learning Repository.
+#. **Purpose**: The dataset is used to predict the onset of diabetes within five years based on diagnostic measures.
+#. **Features**: The dataset contains 768 samples, each with 8 features. 
+
+The features are:
+
+#. Pregnancies: Number of times pregnant.
+#. Glucose: Plasma glucose concentration (mg/dL) a 2 hours in an oral glucose tolerance test.
+#. Blood Pressure: Diastolic blood pressure (mm Hg) at the time of screening.
+#. Skin Thickness: Triceps skinfold thickness (mm) measured at the back of the upper arm.
+#. Insulin: 2-Hour serum insulin (mu U/ml).
+#. BMI: Body mass index.
+#. Diabetes Pedigree Function: A function that scores likelihood of diabetes based on family history.
+#. Age: Age of the individual (years).
+
+**Outcome**: Whether or not the individual has diabetes (1 for positive, 0 for negative).
+
 .. code-block:: python
     :linenos:
 
