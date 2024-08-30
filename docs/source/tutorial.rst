@@ -32,10 +32,10 @@ will be provided for you during the session.
     - 15 minutes
     - 15 minutes
     - 30 minutes
-  * - 
-    - 00 minutes
-    - 00 minutes
-    - 00 minutes
+  * - Training on Multiple GPUs (DataParallel)
+    - 15 minutes
+    - 10 minutes
+    - 25 minutes
   * - 
     - 00 minutes
     - 00 minutes

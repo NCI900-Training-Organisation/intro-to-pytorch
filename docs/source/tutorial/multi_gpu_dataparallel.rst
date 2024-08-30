@@ -4,11 +4,10 @@ Multi-GPU Training using Data Parallelism
 .. admonition:: Overview
    :class: Overview
 
-    * **Tutorial:** 30 min
-    * **Exercises:** 15 min
+    * **Tutorial:** 15 min
+    * **Exercises:** 10 min
 
         **Objectives:**
-            #. Learn how to write a custom dataloader in PyTorch.
             #. Learn how to use multiple GPUs in training using data parallelism. 
 
 By default, PyTorch will use only one GPU. However, you can easily leverage multiple GPUs by running your model in parallel using `DataParallel`.
