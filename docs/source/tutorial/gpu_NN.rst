@@ -42,8 +42,8 @@ desired device afterward using the `.to()` function.
     class_model.load_state_dict(torch.load(modelpath, map_location=device, weights_only=True))
     class_model.to(device)
 
-Training the Model
-******************
+Training on the GPU
+*******************
 
 When training, both the model and all the data it operates on should be on the same device.
 
