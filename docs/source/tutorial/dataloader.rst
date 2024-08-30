@@ -10,6 +10,7 @@ Loading a Dataset in PyTorch
         **Objectives:**
             #. Learn how to use pre-loaded data in PyTorch.
             #. Learn how to use custom data in PyTorch.
+            #. Learn how to use custom dataloader in PyTorch.
 
 PyTorch offers two data primitives—`torch.utils.data.DataLoader` and `torch.utils.data.Dataset`— which 
 facilitate the use of both pre-loaded datasets and custom data.
@@ -146,6 +147,52 @@ Data loader combines a dataset and a sampler, and provides an iterable over the 
    Each tensor will be of size [8, 3, 64, 64] -> [batch_size, channels, height, width].
 
 
+Writing a custom DataLoader
+****************************
+
+The DataLoader works in conjunction with a Dataset class that defines how to access and preprocess data. 
+
+1. Initialization (`__init__``): Loads the dataset from a file (e.g., CSV) or another source. Performs any necessary preprocessing, such as normalization or 
+feature extraction.
+
+2. Length (`__len__``): Returns the number of samples in the dataset, which helps the DataLoader know how many batches to create.
+
+3. Item Retrieval (`__getitem__``): Retrieves a sample from the dataset given an index. This method is called by the DataLoader to get individual data points 
+for batching.
+
+.. code-block:: python
+    :linenos:
+
+    column_names = [ 'Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness','Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age', 'Outcome']
+
+    class PimaDataset(Dataset):
+
+        def __init__(self, csv_file):
+            # Load the CSV file without header and assign column names
+            self.data = pd.read_csv(csv_file, header=None, names=column_names)
+            self.features = self.data.drop('Outcome', axis=1).values
+            self.labels = self.data['Outcome'].values
+
+            # Convert to PyTorch tensors
+            self.features_tensor = torch.tensor(self.features, dtype=torch.float32)
+            self.labels_tensor = torch.tensor(self.labels, dtype=torch.long)
+
+            # Calculate mean and std
+            self.mean = self.features_tensor.mean(dim=0)
+            self.std = self.features_tensor.std(dim=0)
+
+            # Normalize the features
+            self.features_tensor = (self.features_tensor - self.mean) / self.std
+
+        def __len__(self):
+            return len(self.data)
+
+        def __getitem__(self, idx):
+            feature = self.features_tensor[idx]
+            label = self.labels_tensor[idx]
+            return feature, label
+
+
 .. admonition:: Exercise
    :class: todo
 
@@ -156,3 +203,4 @@ Data loader combines a dataset and a sampler, and provides an iterable over the 
 
     #. PyTorch provides pre-loaded datasets that can be used directly.
     #. Custom datasets can also be utilized in PyTorch.
+    #. We can create custom dataloaders in PyTorch.
