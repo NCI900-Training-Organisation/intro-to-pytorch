@@ -4,7 +4,7 @@ What is a Neural Network?
 .. admonition:: Overview
    :class: Overview
 
-    * **Tutorial:** 30 min
+    * **Tutorial:** 45 min
     * **Exercises:** 0 min
 
         **Objectives:**

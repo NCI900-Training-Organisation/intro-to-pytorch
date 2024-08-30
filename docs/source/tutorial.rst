@@ -12,6 +12,10 @@ will be provided for you during the session.
     - Material
     - Exercises
     - Duration
+  * - What is a Neural Network?
+    - 45 minutes
+    - 
+    - 45 minutes
   * - Tensors
     - 20 minutes
     - 10 minutes
@@ -22,12 +26,8 @@ will be provided for you during the session.
     - 30 minutes
   * - Building a Neural Network
     - 30 minutes
-    - 15 minutes
-    - 45 minutes
-  * - 
-    - 00 minutes
-    - 00 minutes
-    - 00 minutes
+    - 30 minutes
+    - 60 minutes
   * - 
     - 00 minutes
     - 00 minutes
@@ -48,6 +48,7 @@ will be provided for you during the session.
     tutorial/what_is_NN.rst
     tutorial/tensor.rst
     tutorial/dataloader.rst
+    tutorial/building_NN.rst
     tutorial/multi_gpu.rst
     tutorial/multi_node.rst
 
