@@ -500,8 +500,38 @@ So, how does backpropagation relate to computational graphs? Let's look at a sma
          b = b - \alpha \times db 
 
 
-Where :math:`dW_{1} = \frac{\partial J}{\partial W_{1}}`, :math:`dW_{2} = \frac{\partial J}{\partial W_{2}}` and :math:`db = \frac{\partial J}{\partial b}`.
-This value will vary according to the cost function **J**. In practice, we will replace the for loop with a vectorized implementation to improve efficiency.
+So, how does backpropagation connect with computational graphs? Let's examine a brief (and incomplete) Python code snippet that demonstrates how to update the final hidden layer using the cost function from the output layer.
+
+.. code-block:: python
+
+   for i in range (1, m):
+      Zi = gemm(Wt, Xi) + b # mattrix multiplication followed by addition
+      ai = f(Zi)            # f() is the activation function
+
+      J+ = L(ai, yi)        # L() is the loss function
+
+      dZi += ai - yi
+
+      # assuming we have just two neurons in the layer
+      dW1 += slope_W1(dZi, W1) 
+      dW2 += slope_W2(dZi, W2) 
+      db1 += slope_b1(dZi, b1) 
+      db2 += slope_b2(dZi, b2)
+
+   # average over m input samples
+   J = J / m 
+   dW1 = dW1 / m 
+   dW2 = dW2 / m 
+   db1  = db1 / m 
+   db2  = db2 / m
+
+   # update the weights and biases
+   W1 = W1 - alpha * dW1 # alpha is the learning rate
+   W2 = W2 - alpha * dW2
+   b = b - alpha * db 
+
+
+Where :math:`dW1 = \frac{\partial J}{\partial W_{1}}`, :math:`dW2 = \frac{\partial J}{\partial W_{2}}`, :math:`db1 = \frac{\partial J}{\partial b_{1}` and :math:`db2 = \frac{\partial J}{\partial b_{2}`. In practice, we will replace the for loop with a vectorized implementation to improve efficiency.
 
 Convergence
 ***************
