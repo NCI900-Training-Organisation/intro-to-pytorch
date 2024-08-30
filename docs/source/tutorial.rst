@@ -28,10 +28,10 @@ will be provided for you during the session.
     - 30 minutes
     - 30 minutes
     - 60 minutes
-  * - 
-    - 00 minutes
-    - 00 minutes
-    - 00 minutes
+  * - Training on the GPU
+    - 15 minutes
+    - 15 minutes
+    - 30 minutes
   * - 
     - 00 minutes
     - 00 minutes
@@ -49,6 +49,7 @@ will be provided for you during the session.
     tutorial/tensor.rst
     tutorial/dataloader.rst
     tutorial/building_NN.rst
+    tutorial/gpu_NN.rst
     tutorial/multi_gpu.rst
     tutorial/multi_node.rst
 

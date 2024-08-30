@@ -143,6 +143,12 @@ Model Evaluation
 Ideally, we should split the data into separate training and testing datasets, or use a distinct dataset for evaluation. For simplicity, we are testing the 
 model on the same data used for training.
 
+
+.. admonition:: Exercise
+   :class: todo
+
+    Try the notebook *building_NN.ipynb*.
+
 .. admonition:: Key Points
    :class: hint
 
