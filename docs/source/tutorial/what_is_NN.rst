@@ -478,6 +478,7 @@ is known as backpropagation.
 So, how does backpropagation connect with computational graphs? Let's examine a brief (and incomplete) Python code snippet that demonstrates how to update the final hidden layer using the cost function from the output layer.
 
 .. code-block:: python
+   :linenos:
 
    # forward pass from the last hidden layer to the output layer
    for i in range (1, m):

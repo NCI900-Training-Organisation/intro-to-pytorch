@@ -18,6 +18,7 @@ Set the default device
 We can set a default device when building a model, ensuring that all operations occur on this device. If available, we can set the GPU as the default device.
 
 .. code-block:: python
+    :linenos:
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -27,6 +28,7 @@ Saving and Loading a Model
 We can save the model in a specific path in the syste.
 
 .. code-block:: python
+    :linenos:
 
     modelpath = os.path.expandvars('/home/$USER/class_model')
     torch.save(class_model.state_dict(), modelpath)
@@ -35,6 +37,7 @@ This saved model can be loaded when needed. During loading, you can directly spe
 desired device afterward using the `.to()` function.
 
 .. code-block:: python
+    :linenos:
 
     class_model.load_state_dict(torch.load(modelpath, map_location=device, weights_only=True))
     class_model.to(device)
@@ -45,7 +48,8 @@ Training the Model
 When training, both the model and all the data it operates on should be on the same device.
 
 .. code-block:: python
-
+    :linenos:
+    
     n_epochs = 100
     batch_size = 10
  
