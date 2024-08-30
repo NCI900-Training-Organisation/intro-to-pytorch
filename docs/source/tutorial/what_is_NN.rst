@@ -475,31 +475,6 @@ Based on the cost function, we may need to either excite (increase the influence
 each layer indirectly affects the weights and biases of the preceding layer using the same computational graph concept we discussed earlier. This process 
 is known as backpropagation.
 
-So, how does backpropagation relate to computational graphs? Let's look at a small example to illustrate this.
-
-.. code-block:: none
-
-         \FOR{$j\i = 1$ \TO $m$}\\
-            Z^{i} = W^{T}X^{i} + b \\
-            a_{i} = f(Z^{i})   \\
-
-            J+ = \frac{1}{m} \sum_{i=1}^{m} L(a^{i}, y^{i})\\
-
-            dZ^{i} += a^{i} - y^{i} \\
-            dW_{1} += X_{1}^{i} - dZ^{i}\\
-            dW_{2} += X_{2}^{i} - dZ^{i}\\
-            db += dZ^{i} \\
-
-         J = J / m \\
-         dW_{1} = dW_{1} / m \\
-         dW_{2} = dW_{2} / m \\
-         db  = db / m   \\ 
-
-         W_{1} = W_{1} - \alpha \times dW_{1} \\
-         W_{2} = W_{2} - \alpha \times dW_{2} \\
-         b = b - \alpha \times db 
-
-
 So, how does backpropagation connect with computational graphs? Let's examine a brief (and incomplete) Python code snippet that demonstrates how to update the final hidden layer using the cost function from the output layer.
 
 .. code-block:: python
@@ -531,7 +506,7 @@ So, how does backpropagation connect with computational graphs? Let's examine a 
    b = b - alpha * db 
 
 
-Where :math:`dW1 = \frac{\partial J}{\partial W_{1}}`, :math:`dW2 = \frac{\partial J}{\partial W_{2}}`, :math:`db1 = \frac{\partial J}{\partial b_{1}` and :math:`db2 = \frac{\partial J}{\partial b_{2}`. In practice, we will replace the for loop with a vectorized implementation to improve efficiency.
+Where :math:`dW1 = \frac{\partial J}{\partial W_{1}}`, :math:`dW2 = \frac{\partial J}{\partial W_{2}}`, :math:`db1 = \frac{\partial J}{\partial b_{1}}` and :math:`db2 = \frac{\partial J}{\partial b_{2}}`. In practice, we will replace the for loop with a vectorized implementation to improve efficiency.
 
 Convergence
 ***************
