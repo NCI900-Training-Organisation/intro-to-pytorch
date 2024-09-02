@@ -115,3 +115,9 @@ synchronizes gradients automatically.
 
         cd job_scripts
         qsub distributed_data_parallel.pbs
+
+
+.. admonition:: Key Points
+   :class: hint
+
+    #. We can use distributed data parallelism to use multiple GPUs on the same node.
