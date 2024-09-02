@@ -8,7 +8,8 @@ Distributed Data Parallelism
     * **Exercises:** 10 min
 
         **Objectives:**
-            #. Learn how to use multiple GPUs in training using data parallelism. 
+            #. Learn how to use multiple GPUs in training using distributed data parallelism. 
+            #. Train the model using PBS a job script.
 
 
 Components of a distributed data parallel model:
@@ -44,3 +45,15 @@ Process Group
         os.environ['MASTER_PORT'] = '12355'
         dist.init_process_group("nccl", rank=rank, world_size=world_size)
 
+.. admonition:: Exercise
+   :class: todo
+
+    1. Examine the program *src/distributed_data_parallel.py*.
+    2. Examine the job script *job_scripts/distributed_data_parallel.pbs*.
+    3. Run the program using the job script *job_scripts/distributed_data_parallel.pbs*.
+
+    .. code-block:: console
+        :linenos:
+
+        cd job_scripts
+        qsub distributed_data_parallel.pbs
