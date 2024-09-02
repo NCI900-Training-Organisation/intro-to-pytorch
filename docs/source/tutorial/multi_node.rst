@@ -16,7 +16,6 @@ single node code:
 
 - **Environment Variables for Multi-Node Training**: Set environment variables like MASTER_ADDR, MASTER_PORT, WORLD_SIZE, and RANK using command-line arguments when launching the script with torchrun.
 - **Modifications to the setup function**: The setup function should be updated to handle the environment variables for multi-node training.
-- **Remove Hardcoded MASTER_ADDR and MASTER_PORT**: These should be passed dynamically when using torchrun.
 - **main function**: Remove the use of mp.spawn and instead rely on torchrun to handle the spawning of processes across nodes.
 
 In PyTorch distributed parallelism, **global rank** and **local rank** are key concepts for managing processes across multiple nodes and
