@@ -15,7 +15,7 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 
 nb_gpus = 2
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-datapath = os.path.expandvars('/scratch/vp91/$USER/intro-to-pytorch/data/pima-indians-diabetes.data.csv')
+datapath = os.path.expandvars('/scratch/vp91/jxj900/intro-to-pytorch/data/pima-indians-diabetes.data.csv')
 
 
 # Define the custom Dataset class

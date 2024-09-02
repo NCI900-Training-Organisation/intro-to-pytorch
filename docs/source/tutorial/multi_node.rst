@@ -8,7 +8,7 @@ Distributed Data Parallelism
     * **Exercises:** 10 min
 
         **Objectives:**
-            #. Learn how to use multiple GPUs in multiple nodes using Torchrun.
+            #. Learn how to use multiple GPUs, in multiple nodes using Torchrun.
 
 
 To run the provided code on multiple nodes using torchrun (previously torch.distributed.launch), we need to make a few modifications to the 
@@ -23,7 +23,7 @@ single node code:
 PBS Script
 **********
 
-As Gadi uses the PBS job scheduler we can use the same to run the training on multiple nodes. Here we are requesting 2 nodes, each with 4 GPUs.
+As Gadi uses the PBS job scheduler we can use it to run the training on multiple nodes. Here we are requesting 2 nodes, each with 4 GPUs.
 
 .. code-block:: console
     :linenos:
@@ -36,33 +36,64 @@ As Gadi uses the PBS job scheduler we can use the same to run the training on mu
     #PBS -l ncpus=96
     #PBS -l ngpus=8
     #PBS -l mem=10GB
-    #PBS -l walltime=00:05:00 
+    #PBS -l walltime=00:20:00 
 
     #PBS -N multinode
 
     module load python3/3.11.0  
     module load cuda/12.3.2
-    module load nccl/2.19.4
 
     . /scratch/vp91/Training-Venv/pytorch/bin/activate
 
-    python3 /scratch/vp91/$USER/intro-to-pytorch/src/distributed_data_parallel.py
+    # Set variables
+    if [[ $PBS_NCPUS -ge $PBS_NCI_NCPUS_PER_NODE ]]
+    then
+    NNODES=$((PBS_NCPUS / PBS_NCI_NCPUS_PER_NODE))
+    else
+    NNODES=1
+    fi
+ 
+    PROC_PER_NODE=$((PBS_NGPUS / NNODES))
+ 
+    MASTER_ADDR=$(cat $PBS_NODEFILE | head -n 1)
+ 
+    # Launch script
+    LAUNCH_SCRIPT=/scratch/vp91/jxj900/intro-to-pytorch/job_scripts/multinode_torchrun.sh
+ 
+    # Set execute permission
+    chmod u+x ${LAUNCH_SCRIPT}
+ 
+    # Run PyTorch application
+    for inode in $(seq 1 $PBS_NCI_NCPUS_PER_NODE $PBS_NCPUS); do
+        pbsdsh -n $inode ${LAUNCH_SCRIPT} ${NNODES} ${PROC_PER_NODE} ${MASTER_ADDR} &
+    done
+    wait
 
-    # Get the list of allocated nodes
-    NODES=$(cat $PBS_NODEFILE | uniq)
-    NODE_ARR=($NODES)
+Here, `pbsdsh` launches the `multinode_torchrun.sh` script simultaneously on all nodes. The `multinode_torchrun.sh` script contains the following:
 
-    # Define the master node (usually the first node in the list)
-    MASTER_ADDR=${NODE_ARR[0]}
-    MASTER_PORT=12355  # Set an appropriate port for communication
+.. code-block:: console
+    :linenos:
 
-    NNODES=2
-    NPROC_PER_NODE=4
-    WORLD_SIZE=$(($NNODES * $NPROC_PER_NODE))
+    #!/bin/bash
+ 
+ 
+    module load python3/3.11.0  
+    module load cuda/12.3.2
 
-    torchrun --nnodes=$NNODES --nproc_per_node=$NPROC_PER_NODE \
-             --node_rank=$PBS_NODEID --master_addr=$MASTER_ADDR \
-             --master_port=$MASTER_PORT /scratch/vp91/$USER/intro-to-pytorch/src/multinode_torchrun.py
+    . /scratch/vp91/Training-Venv/pytorch/bin/activate
+ 
+    # Application script
+    APPLICATION_SCRIPT=/scratch/vp91/jxj900/intro-to-pytorch/src/distributed_data_parallel.py
+ 
+    # Set execute permission
+    chmod u+x ${APPLICATION_SCRIPT}
+ 
+    # Run PyTorch application
+    torchrun --nnodes=${1} --nproc_per_node=${2} --rdzv_id=100 --rdzv_backend=c10d --rdzv_endpoint=${3}:29400 ${APPLICATION_SCRIPT}
+
+
+Where `torchrun` will launch the training program `distributed_data_parallel.py` on each node and
+use all the 4 GPUs on each node.
 
 
 .. admonition:: Explanation
@@ -91,7 +122,7 @@ As Gadi uses the PBS job scheduler we can use the same to run the training on mu
 Alternative Options
 ********************
 
-Alternatively, if you can SSH into the indvdiual nodes we can do the following.
+Alternatively, if you can SSH into the individual nodes, you can proceed with the following steps.
 
 On the first node (rank 0):
 
@@ -107,6 +138,13 @@ On the second node (rank 1):
     :linenos:
 
     torchrun --nnodes=2 --nproc_per_node=4 --node_rank=1 --master_addr="<Node1 IP>" --master_port=12355 /scratch/vp91/$USER/intro-to-pytorch/src/multinode_torchrun.py
+
+
+.. admonition:: Explanation
+   :class: attention
+
+   If you have a `SLURM scheduler, <https://youtu.be/KaAJtI1T2x4>`_, things are a bit easier since the *srun* command can launch the PyTorch job directly 
+   from the job script, eliminating the need for an additional shell script.
 
 
 .. admonition:: Exercise
