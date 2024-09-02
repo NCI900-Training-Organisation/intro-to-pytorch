@@ -52,10 +52,12 @@ class PimaDataset(Dataset):
         return feature, label
 
 def setup():
-    rank = int(os.environ['RANK'])
-    world_size = int(os.environ['WORLD_SIZE'])
-    dist.init_process_group("nccl", rank=rank, world_size=world_size)
-    torch.cuda.set_device(rank)
+    #rank = int(os.environ['RANK'])
+    #world_size = int(os.environ['WORLD_SIZE'])
+    #dist.init_process_group("nccl", rank=rank, world_size=world_size)
+    dist.init_process_group("nccl")
+    #torch.cuda.set_device(rank)
+    torch.cuda.set_device(int(os.environ["LOCAL_RANK"]))
 
     
 def cleanup():
@@ -91,6 +93,7 @@ def main():
     # setup the process groups
     setup()
 
+    gpu_id = int(os.environ['LOCAL_RANK'])
     rank = int(os.environ['RANK'])
     world_size = int(os.environ['WORLD_SIZE'])
 
@@ -98,13 +101,13 @@ def main():
     dataloader = prepare(rank, world_size)
     
     # instantiate the model(it's your own model) and move it to the right device
-    model = PimaClassifier().to(rank)
+    model = PimaClassifier().to(gpu_id)
     
     # wrap the model with DDP
     # device_ids tell DDP where is your model
     # output_device tells DDP where to output, in our case, it is rank
     # find_unused_parameters=True instructs DDP to find unused output of the forward() function of any module in the model
-    model = DDP(model, device_ids=[rank], output_device=rank, find_unused_parameters=True)
+    model = DDP(model, device_ids=[gpu_id], output_device=rank, find_unused_parameters=True)
 
     loss_fn = nn.BCELoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
@@ -116,8 +119,8 @@ def main():
         dataloader.sampler.set_epoch(epoch)
 
         for batch_features, batch_labels in dataloader:
-            batch_features = batch_features.to(rank)
-            batch_labels = batch_labels.to(rank)
+            batch_features = batch_features.to(gpu_id)
+            batch_labels = batch_labels.to(gpu_id)
 
             optimizer.zero_grad()
         

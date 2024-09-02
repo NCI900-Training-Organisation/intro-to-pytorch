@@ -35,6 +35,8 @@ chmod u+x ${LAUNCH_SCRIPT}
  
 # Run PyTorch application
 for inode in $(seq 1 $PBS_NCI_NCPUS_PER_NODE $PBS_NCPUS); do
-  pbsdsh -n $inode ${LAUNCH_SCRIPT} ${NNODES} ${PROC_PER_NODE} ${MASTER_ADDR} &
+    echo $inode
+    pbsdsh -n $inode ${LAUNCH_SCRIPT} ${NNODES} ${PROC_PER_NODE} ${MASTER_ADDR} &
 done
+
 wait

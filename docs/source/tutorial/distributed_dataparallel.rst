@@ -77,9 +77,11 @@ and a distributed `DataLoader`.
 .. admonition:: Explanation
    :class: attention
 
-    - `pin_memory` - Allocate the batches in page-locked memory, which can speed up the transfer of data to the GPU.
     - `num_workers` - Number of subprocesses to use for data loading.
     - `pin_memory` - Pinned (or Page-locked) memory is a region of host memory that is "locked" in physical RAM and cannot be paged out to disk by the operating system. This ensures that the memory remains in RAM and is directly accessible for operations like data transfer between the CPU and GPU. Page-locking excessive amounts of memory with cudaMallocHost() may degrade system performance, since it reduces the amount of memory available to the system for paging. As a result, this function is best used sparingly to allocate staging areas for data exchange between host and device.
+
+    .. image:: ../figs/pinning.png
+
 
 
 Wrapping a Model in DDP
