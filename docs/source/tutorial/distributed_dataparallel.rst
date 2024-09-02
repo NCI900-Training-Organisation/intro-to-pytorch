@@ -22,18 +22,15 @@ Components of a distributed data parallel model:
 Advantage over DataParallel
 ****************************
 
-- **Scalability:** DataParallel operates as a single-process, multi-threaded approach and only works on a single machine, whereas
-DistributedDataParallel (DDP) uses a multi-process approach and supports both single- and multi-machine training. DataParallel is often slower than DDP, 
-even on a single machine, due to *GIL* contention across threads, the overhead of replicating the model per iteration, and the extra steps involved in 
-scattering inputs and gathering outputs.
+- **Scalability:** DataParallel operates as a single-process, multi-threaded approach and only works on a single machine, whereas, DistributedDataParallel (DDP) uses a multi-process approach and supports both single- and multi-machine training. DataParallel is often slower than DDP, even on a single machine, due to *GIL* contention across threads, the overhead of replicating the model per iteration, and the extra steps involved in scattering inputs and gathering outputs.
   
-- **Model Parallelism:** If your model is too large to fit on a single GPU, you need to use model parallelism to distribute it across multiple GPUs. 
-DistributedDataParallel supports model parallelism, while DataParallel does not. When combining DDP with model parallelism, each DDP process utilizes model 
-parallelism, and all processes together perform data parallelism.
+- **Model Parallelism:** If your model is too large to fit on a single GPU, you need to use model parallelism to distribute it across multiple GPUs. DistributedDataParallel supports model parallelism, while DataParallel does not. When combining DDP with model parallelism, each DDP process utilizes model parallelism, and all processes together perform data parallelism.
 
 
 Process Group
 *************
+
+In DistributedDataParallel (DDP), a *Process Group* is a collection of processes that can communicate with each other during distributed training. 
 
 .. code-block:: python
     :linenos:
@@ -73,8 +70,7 @@ To split the data across multiple GPUs we use `DistributedSampler`.
 
     - `num_replicas` - Is typically the number of processes in the distributed training job.
     - `rank` - Each process is assigned a rank which ensures that each process only accesses the data corresponding to its rank.
-    - `drop_last` -   When working with datasets in distributed training, it is common for the total number of samples in the dataset to not be perfectly divisible by the product of the batch size and the number of replicas. 
-`drop_last` is set to True, the last batch that is not full will be dropped. 
+    - `drop_last` -   When working with datasets in distributed training, it is common for the total number of samples in the dataset to not be perfectly divisible by the product of the batch size and the number of replicas. When `drop_last` is set to *True*, the last batch that is not full will be dropped. 
 
 and a distributed `DataLoader`.
 
