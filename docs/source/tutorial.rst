@@ -56,6 +56,8 @@ will be provided for you during the session.
     tutorial/gpu_NN.rst
     tutorial/dataparallel.rst
     tutorial/distributed_dataparallel.rst
+    tutorial/dataparallel.rst
+    tutorial/multi_node.rst
 
 
 
