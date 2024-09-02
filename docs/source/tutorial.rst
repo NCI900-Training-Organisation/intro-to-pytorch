@@ -51,7 +51,7 @@ will be provided for you during the session.
     tutorial/building_NN.rst
     tutorial/gpu_NN.rst
     tutorial/multi_gpu_dataparallel.rst
-    tutorial/multi_node.rst
+    tutorial/distributed_dataparallel.rst
 
 
 
