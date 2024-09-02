@@ -75,6 +75,19 @@ As Gadi uses the PBS job scheduler we can use the same to run the training on mu
     `WORLD_SIZE`: The total number of processes (NNODES * NPROC_PER_NODE).
 
 
+.. admonition:: Explanation
+   :class: attention
+
+    The rendezvous backend in PyTorch is a key component of the distributed training setup. It is
+    responsible for coordinating the initialization of multiple processes that may be running across different 
+    nodes in a distributed system. This process is crucial for ensuring that all distributed processes are aware 
+    of each other and can start training in a synchronized manner.
+
+    - `RDZV_BACKEND`: The backend used for the rendezvous process (c10d is default for PyTorch).
+    - `RDZV_ENDPOINT`: The network address of the rendezvous server, combining `MASTER_ADDR` and `MASTER_PORT`.
+    - `RDZV_ID`: Provides a unique identifier for each distributed training job. This is essential when multiple distributed jobs are running on the same set of nodes.
+
+
 Alternative Options
 ********************
 
