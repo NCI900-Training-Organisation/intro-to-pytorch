@@ -1,5 +1,5 @@
-Distributed Data Parallelism
-=============================
+Multi-Node Parallelism
+=======================
 
 .. admonition:: Overview
    :class: Overview
@@ -153,7 +153,7 @@ Of course, this becomes be a very difficult task if you have large number of Nod
 .. admonition:: Explanation
    :class: attention
 
-   If you have a `SLURM scheduler, <https://youtu.be/KaAJtI1T2x4>`_, things are a bit easier since the *srun* command can launch the Torchrun directly 
+   If you have a `SLURM scheduler <https://youtu.be/KaAJtI1T2x4>`_, things are a bit easier since the *srun* command can launch the Torchrun directly 
    from the job script, on all nodes, eliminating the need for an additional shell script.
 
 
