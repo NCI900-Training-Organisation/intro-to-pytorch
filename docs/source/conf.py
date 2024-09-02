@@ -2,7 +2,7 @@
 
 # -- Project information
 
-project = 'Introduction to Parallel Programming Using Python'
+project = 'Introduction to Neural Networks and PyTorch'
 copyright = '2024, National Computational Infrastructure'
 author = 'Joseph John'
 
