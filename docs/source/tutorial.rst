@@ -36,10 +36,14 @@ will be provided for you during the session.
     - 15 minutes
     - 10 minutes
     - 25 minutes
-  * - 
-    - 00 minutes
-    - 00 minutes
-    - 00 minutes
+  * - Training on Multiple GPUs (DistributedDataParallelism)
+    - 20 minutes
+    - 10 minutes
+    - 30 minutes
+  * - Training on Multiple Nodes
+    - 20 minutes
+    - 10 minutes
+    - 30 minutes
 
 
 .. toctree::
@@ -50,7 +54,7 @@ will be provided for you during the session.
     tutorial/dataloader.rst
     tutorial/building_NN.rst
     tutorial/gpu_NN.rst
-    tutorial/multi_gpu_dataparallel.rst
+    tutorial/dataparallel.rst
     tutorial/distributed_dataparallel.rst
 
 

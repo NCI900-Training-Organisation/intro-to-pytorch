@@ -70,3 +70,17 @@ When using nn.DataParallel in PyTorch, `class_model.parameters()).device` often 
 nn.DataParallel replicates the model across multiple GPUs but keeps the original model's parameters on the primary GPU (cuda:0). The `nn.DataParallel` wrapper 
 itself does not move parameters to different GPUs; it only distributes the input data to the GPUs and then aggregates the results. The underlying parameters of the model are still located on the primary device.
 It's always a good idea to use `nvidia-smi` to check that the GPU utilization is as expected.
+
+
+.. admonition:: Exercise
+   :class: todo
+
+    Try the notebook *multi_GPU.ipynb*.
+
+
+.. admonition:: Key Points
+   :class: hint
+
+    #. We can use `nn.DataParallel` to utilize multiple GPUs for training.
+    #. The training is limited to a single node and cannot span across multiple nodes.
+

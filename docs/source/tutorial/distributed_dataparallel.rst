@@ -4,7 +4,7 @@ Distributed Data Parallelism
 .. admonition:: Overview
    :class: Overview
 
-    * **Tutorial:** 15 min
+    * **Tutorial:** 20 min
     * **Exercises:** 10 min
 
         **Objectives:**
@@ -45,10 +45,72 @@ Process Group
         os.environ['MASTER_PORT'] = '12355'
         dist.init_process_group("nccl", rank=rank, world_size=world_size)
 
+.. admonition:: Explanation
+   :class: attention
+
+   Here, `nccl` is the backend that determines how communication between processes is handled. Other common backends are `gloo`, a CPU-based backend, and `mpi`
+   the where MPI (Message Passing Interface) based backend.
+
+Splitting the Dataloader
+************************
+
+To split the data across multiple GPUs we use `DistributedSampler`.
+
+.. code-block:: python
+    :linenos:
+
+    def prepare(rank, world_size, batch_size=32, pin_memory=False, num_workers=0):
+        dataset = PimaDataset(datapath)
+        sampler = DistributedSampler(dataset, num_replicas=world_size, rank=rank, shuffle=False, drop_last=False)
+    
+        dataloader = DataLoader(dataset, batch_size=batch_size, pin_memory=pin_memory, num_workers=num_workers, drop_last=False, shuffle=False, sampler=sampler)
+    
+        return dataloader
+
+
+.. admonition:: Explanation
+   :class: attention
+
+    - `num_replicas` - Is typically the number of processes in the distributed training job.
+    - `rank` - Each process is assigned a rank which ensures that each process only accesses the data corresponding to its rank.
+    - `drop_last` -   When working with datasets in distributed training, it is common for the total number of samples in the dataset to not be perfectly divisible by the product of the batch size and the number of replicas. 
+`drop_last` is set to True, the last batch that is not full will be dropped. 
+
+and a distributed `DataLoader`.
+
+.. admonition:: Explanation
+   :class: attention
+
+    - `pin_memory` - Allocate the batches in page-locked memory, which can speed up the transfer of data to the GPU.
+    - `num_workers` - Number of subprocesses to use for data loading.
+    - `pin_memory` - Pinned (or Page-locked) memory is a region of host memory that is "locked" in physical RAM and cannot be paged out to disk by the operating system. This ensures that the memory remains in RAM and is directly accessible for operations like data transfer between the CPU and GPU. Page-locking excessive amounts of memory with cudaMallocHost() may degrade system performance, since it reduces the amount of memory available to the system for paging. As a result, this function is best used sparingly to allocate staging areas for data exchange between host and device.
+
+
+Wrapping a Model in DDP
+**********************
+
+DistributedDataParallel (DDP) is a PyTorch wrapper that helps to parallelize training across multiple GPUs and minimizes communication overhead and 
+synchronizes gradients automatically.
+
+
+.. code-block:: python
+    :linenos:
+
+    model_ddp = DDP(model, device_ids=[rank], output_device=rank, find_unused_parameters=True)
+
+.. admonition:: Explanation
+   :class: attention
+
+    - `model`: The neural network (`torch.nn.Module`) that you want to train. Before wrapping it with DDP, it should be placed on the appropriate device (GPU) using model.to(device).
+    - `device-ids`: Specifies the GPU device(s) to which this process's model should be mapped. The rank typically corresponds to the index of the current process within the distributed setup, and in a single-node setup with multiple GPUs, rank is often the GPU ID. For example, if rank=0, it means this process will use GPU 0.
+    - `output_device` : Specifies the device where the output of the model should be stored.
+    - `find_unused_parameters` : DDP assumes all model parameters are used in every forward pass, and it synchronizes their gradients accordingly. Setting `find_unused_parameters=True`` ensures that DDP will only synchronize the gradients of parameters that are actually used, preventing errors and unnecessary communication overhead.
+
+
 .. admonition:: Exercise
    :class: todo
 
-    1. Examine the program *src/distributed_data_parallel.py*.
+    1. Examine the program *src/distributed_data_parallel.py*. What the changes from data_parallel.ipynb?
     2. Examine the job script *job_scripts/distributed_data_parallel.pbs*.
     3. Run the program using the job script *job_scripts/distributed_data_parallel.pbs*.
 
