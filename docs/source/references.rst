@@ -1,10 +1,9 @@
 Reference
 =========
-1. https://docs.nvidia.com/deeplearning/performance/dl-performance-gpu-background/index.html
-2. https://www.nvidia.com/content/PDF/fermi_white_papers/NVIDIA_Fermi_Compute_Architecture_Whitepaper.pdf
-3. https://www.sciencedirect.com/science/article/abs/pii/B978012800979600010X
-4. https://developer.download.nvidia.com/CUDA/training/StreamsAndConcurrencyWebinar.pdf
-5. https://mpitutorial.com
+1. https://pytorch.org/tutorials/intermediate/ddp_series_multinode.html
+2. https://www.run.ai/guides/multi-gpu/pytorch-multi-gpu-4-techniques-explained
+3. https://medium.com/codex/a-comprehensive-tutorial-to-pytorch-distributeddataparallel-1f4b42bb1b51
+4. https://www.coursera.org/learn/neural-networks-deep-learning
 
 
 Contributers
