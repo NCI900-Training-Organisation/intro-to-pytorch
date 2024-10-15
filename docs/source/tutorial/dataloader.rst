@@ -4,8 +4,7 @@ Loading a Dataset in PyTorch
 .. admonition:: Overview
    :class: Overview
 
-    * **Tutorial:** 15 min
-    * **Exercises:** 15 min
+    * **Tutorial:** 20 min
 
         **Objectives:**
             #. Learn how to use pre-loaded data in PyTorch.
