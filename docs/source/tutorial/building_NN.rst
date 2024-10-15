@@ -54,7 +54,7 @@ The **sigmoid function** outputs values between 0 and 1, which is exactly what w
 Sequential vs. Class-Based Models
 ***********************************
 
-In PyTorch, neural networks can be defined using different approaches, and two common ones are the `Sequential` model and the class-based model.
+In PyTorch, neural networks can be defined using different approaches, and two common ones are the `Sequential` model and the `class-based model`.
 
 The `Sequential` model is a simple, linear stack of layers where each layer has a single input and output. It is useful for straightforward feedforward 
 networks where layers are applied in a sequential order.
@@ -135,7 +135,7 @@ you ensure that gradients from previous steps are reset to zero, preventing them
 2. **loss.backward()**:  Calculates the gradients of the loss with respect to each parameter of the model. This is done using backpropagation, a key algorithm 
 for training neural networks.
 
-3. **optimizer.step()**: Used to update the model's parameters based on the gradients computed during during the backward pass (**loss.backward()**).
+3. **optimizer.step()**: Used to update the model's parameters based on the gradients computed during during the backward pass (loss.backward()).
 
 Model Evaluation
 ******************

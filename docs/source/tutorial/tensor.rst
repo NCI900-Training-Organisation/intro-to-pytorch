@@ -222,6 +222,13 @@ Tensors make this process quite straightforward:
     print(b_tensor.grad)
 
 
+When you perform operations in PyTorch involving tensors that have **requires_grad=True**, PyTorch builds a computational graph in the background. 
+This graph records the operations performed on the tensors, allowing for automatic differentiation during backpropagation.
+When you calculate *z_tensor = torch.matmul(x_tensor, w_tensor) + b_tensor*, PyTorch tracks the entire sequence of operations.
+Because w_tensor and b_tensor have requires_grad=True, PyTorch knows that these tensors are part of the computational graph.
+Every operation (such as torch.matmul and addition) creates nodes in this graph, linking the output z_tensor back to the inputs w_tensor and b_tensor.
+
+
 
 .. admonition:: Exercise
    :class: todo

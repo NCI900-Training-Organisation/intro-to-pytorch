@@ -13,37 +13,37 @@ will be provided for you during the session.
     - Exercises
     - Duration
   * - What is a Neural Network?
-    - 45 minutes
+    - 60 minutes
     - 
-    - 45 minutes
+    - 60 minutes
   * - Tensors
     - 20 minutes
     - 10 minutes
     - 30 minutes
   * - Loading a Dataset
-    - 15 minutes
-    - 15 minutes
     - 30 minutes
+    - 10 minutes
+    - 40 minutes
   * - Building a Neural Network
     - 30 minutes
     - 30 minutes
     - 60 minutes
   * - Training on the GPU
+    - 20 minutes
     - 15 minutes
-    - 15 minutes
-    - 30 minutes
+    - 35 minutes
   * - Training on Multiple GPUs (DataParallel)
-    - 15 minutes
+    - 20 minutes
     - 10 minutes
-    - 25 minutes
+    - 30 minutes
   * - Training on Multiple GPUs (DistributedDataParallelism)
     - 20 minutes
     - 10 minutes
     - 30 minutes
   * - Training on Multiple Nodes
-    - 20 minutes
-    - 10 minutes
     - 30 minutes
+    - 10 minutes
+    - 40 minutes
 
 
 .. toctree::

@@ -12,8 +12,33 @@ Loading a Dataset in PyTorch
             #. Learn how to use custom data in PyTorch.
             #. Learn how to use custom dataloader in PyTorch.
 
-PyTorch offers two data primitives—`torch.utils.data.DataLoader` and `torch.utils.data.Dataset`— which 
-facilitate the use of both pre-loaded datasets and custom data.
+PyTorch offers two data primitives—`torch.utils.data.DataLoader` and `torch.utils.data.Dataset`— which facilitate the use of both pre-loaded datasets and custom data. 
+Dataset is an abstract class that represents a dataset. It defines how the data should be accessed and loaded, allowing users to specify how to retrieve 
+individual data points. DataLoader wraps around a Dataset and provides iterable functionality, handling batching, shuffling, and loading data in 
+parallel using multiprocessing.
+
+.. list-table:: Differences Between Dataset and DataLoader
+   :header-rows: 1
+
+   * - Feature
+     - Dataset
+     - DataLoader
+   * - Purpose
+     - Defines how individual data samples are loaded.
+     - Provides batch loading and efficient data iteration.
+   * - Customizable
+     - Users implement custom loading logic (e.g., loading images, preprocessing).
+     - Handles batching, shuffling, and parallel data loading.
+   * - Methods
+     - Requires ``__len__()`` and ``__getitem__()`` methods.
+     - Takes a Dataset as input and provides data batches.
+   * - Functionality
+     - Accesses individual data points (samples).
+     - Loads data in batches and supports multiprocessing.
+   * - Parallelization
+     - Not parallelized (loads one item at a time).
+     - Supports parallel data loading (``num_workers``).
+
 
 Pre-loaded Datasets
 ********************

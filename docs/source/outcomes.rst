@@ -2,12 +2,11 @@ Learning Outcomes
 =================
 
 .. note::
-    #. Understand how tensors work in PyTorch.
-    #. Learn how to load data in PyTorch.
-    #. Get acquainted with using the ARE platform on Gadi.
+ #. Learn the theoretical aspects of Neural Networks.
+ #. Understand how tensors work in PyTorch.
+ #. Learn how to build a Neural Network in Pytorch.
 
-In this workshop, you will learn the basics of PyTorch, including tensor operations, dynamic computation 
-graphs, and neural network modules. This workshop will provide practical experience in building and t
-raining neural networks using PyTorch. 
+In this workshop, you will learn the basics of PyTorch, including tensor operations, dynamic computation graphs, and neural network modules. 
+You will also gain practical experience in building and training neural networks using PyTorch. 
 
 

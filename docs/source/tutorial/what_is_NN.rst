@@ -10,9 +10,9 @@ What is a Neural Network?
         **Objectives:**
             #. Learn the different parts of a neural network
 
-Neural networks (NN) are computational models inspired by the human brain, designed to recognize patterns and make decisions based on data. They consist 
-of interconnected layers of nodes, or "neurons," which process and transform input information. Through training, neural networks learn to improve their 
-accuracy in tasks like image recognition, language processing, and more. NN comprise of multiple layers that perform operations on data.
+Neural Networks (NN) are computational models inspired by the human brain, designed to recognize patterns and make data-based decisions. 
+They consist of interconnected layers of nodes, or "neurons," which process and transform input information. Through training, neural networks 
+learn to improve their accuracy in tasks like image recognition, language processing, and more.
 
 Neuron
 ******
@@ -20,11 +20,14 @@ Neuron
 In the context of a neural network, a neuron is a fundamental unit that processes inputs to produce an 
 output. Let's break down its role and functionality step by step:
 
-1. **Inputs and Weights**: Each neuron receives multiple inputs. These inputs are each associated with a weight, which is a numerical value that adjusts 
-the importance of the corresponding input. 
+1. **Input features**: These are the individual measurable properties or characteristics of the data that are fed into the network. Features can be any numerical data -
+for example if we use image as the input, the input features will be the pixel values of the image. 
 
-2. **Calculating the Weighted Sum**: For each neuron, you first multiply each input by its corresponding weight. Then, you sum up all these weighted inputs. 
-This sum represents the combined influence of all the inputs on the neuron.
+1. **Weights**: Input features are each associated with a weight, which is a numerical value that adjusts 
+the importance of the corresponding input feature. 
+
+2. **Calculating the Weighted Sum**: For each neuron, you first multiply each input feature by its corresponding weight. Then, you sum up all these weighted inputs. 
+This sum represents the combined influence of all the input feature on the neuron.
 
 3. **Adding Bias**: To this weighted sum, you add a bias term. The bias is another adjustable parameter that helps the neuron model more complex patterns 
 by shifting the activation function's input.
@@ -52,9 +55,9 @@ Role of Activation Functions:
 1. **Produce Outputs of Neurons**: After computing the weighted sum of inputs and adding the bias, an activation function is applied to 
    this value. 
 
-2. **Update Weights and Biases During Training**: Activation functions play a role in updating weights and biases during the training process. When the 
-   network is trained using methods like backpropagation, the gradient of the loss function with respect to the weights and biases is calculated. 
-   The gradient depends on the derivative of the activation function, which helps adjust weights and biases to minimize the error. Therefore, the choice of 
+2. **Update Weights and Biases During Training**: Activation functions play a role in updating weights and biases during the *training process*. When the 
+   network is trained using methods like *backpropagation*, the *gradient* of the *loss function* with respect to the weights and biases is calculated. 
+   The gradient depends on the *derivative* of the activation function, which helps adjust weights and biases to minimize the *error*. Therefore, the choice of 
    activation function affects how effectively the network learns.
 
 Characteristics of Activation Functions:
@@ -77,7 +80,7 @@ Neural Network -  A Network of Neurons
 **************************************
 
 A neural network is a complex system of interconnected neurons organized into layers. Each layer's output serves as the input for the next layer, 
-creating a stack of neurons that processes data in stages. Matematically this can be boiled down to a sophisticated function that maps inputs to outputs 
+creating a stack of neurons that processes data in stages. Mathematically this can be boiled down to a sophisticated function that maps inputs to outputs 
 through numerous parameters. Training involves adjusting these parameters to improve the network's performance and accuracy.
 
 .. image:: ../figs/layers.png
@@ -91,7 +94,7 @@ processed information from the hidden layers. Each layer plays a crucial role in
    :class: attention
 
    Matrix X represents the input matrix, where each column vector corresponds to an input sample. So if the matrix has the dimensions :math:`n \times m`
-   *n* will be the number of featues (features can be any numerical data) in each input sample and *m* will the total number of samples (training data). 
+   *n* will be the number of featues in each input sample and *m* will the total number of samples (also called training data). 
 
    .. math::
       
@@ -107,7 +110,7 @@ processed information from the hidden layers. Each layer plays a crucial role in
    :math:`X^{(1)}` will represent the entire vector n x 1 vector representing first data sample while 
    :math:`x_{3}^{(1)}` will represent the third feature in first data sample.
 
-   The figure below illustrates a 2-layer neural network where a single data sample is provided as input.
+   The figure below illustrates a 2-layer neural network where a single data sample (with 3 featues) is provided as input.
    The input layer is not counted as one of the layers.
 
    .. image:: ../figs/2layer_NN.drawio.png
@@ -124,11 +127,11 @@ processed information from the hidden layers. Each layer plays a crucial role in
    .. math::
       a^{[2]} = a_{1}^{[2]}
       
-   *The number in square brackets represents the layer number, while the subscript denotes the neuron's index within that layer.*
+   The number in square brackets represents the layer number, while the subscript denotes the neuron's index within that layer.
 
    Each neuron in every layer computes the *Z* value for each input sample and then calculates the activation value for that sample. 
    
-   The figure illustrates this process with an example of a first neuron in layer 1 processing the first input sample.
+   The figure illustrates this process with an example of the first neuron in layer 1 processing the first input sample.
 
    .. image:: ../figs/activation.drawio.png
 
@@ -280,27 +283,36 @@ processed information from the hidden layers. Each layer plays a crucial role in
                   a_{a}^{(1)} & a_{a}^{(2)} & .... & a_{a}^{(m)} \\
                \end{bmatrix}
 
-   This will basically involve a GEneral Matrix multiplication (GEMM) operations :math:`W^{[1]T} times X` where :math:`X` will be the entire input sample 
-   represented as a matrix of dimensions :math:`n \times m` (where *n* is the number of features in an input sample and *m* is the number input samples. 
-   In the above example *n* is 3). :math:`W^{[1]T}` will be a matrix of dimensions :math:`a \times m` (where *a* is the number of input neurons in that layer 
-   and *m* is the number input samples. The above example *a* is 3). This will result in the output of the first layer represented as the matrix :math:`a^{[1]}` 
-   and it will have the dimensions :math:`a \times n`. In matrix :math:`a^{[1]}`, the horizontal axis represents the training samples, while the vertical axis 
-   represents the neurons in a layer.
+This will involve a GEneral Matrix multiplication (GEMM) operation :math:`W^{[1]T} \times X` where :math:`X` will be the entire input sample 
+represented as a matrix of dimensions :math:`n \times m` (where *n* is the number of features in an input sample and *m* is the number of input samples. 
+In the above example *n* is 3). :math:`W^{[1]T}` will be a matrix of dimensions :math:`a \times m` (where *a* is the number of input neurons in that layer 
+and *m* is the number input samples. The above example *a* is 3). This will result in the output of the first layer represented as the matrix :math:`a^{[1]}` 
+and it will have the dimensions :math:`a \times n`. In matrix :math:`a^{[1]}`, the horizontal axis represents the training samples, while the vertical axis 
+represents the neurons in a layer.
+
+The matrix :math:`a^{[1]}` holds the value of :math:`a` neurons applied to :math:`m` input samples. This matrix then forms the input to the next layer in the neural network.
+
+We typically initialize the weights of each neuron randomly, although methods like **Xavier Initialization**, **He Initialization**, or 
+**Orthogonal Initialization** are commonly used to improve training efficiency. 
 
                
 
 Loss Function and Cost Functions
 ********************************
 
-We typically initialize random weights for each neuron. Then, using the above method, calculations are propagated from one layer to the next, a process 
-known as the **forward pass**. An **epoch** refers to a full pass through the entire training dataset, including performing forward passes 
-for all data samples. 
+During training, for each batch of input samples, calculations are 
+propagated through the network in a process called the **forward pass**. After each forward pass, the weights of the network are updated using 
+the **backpropagation** algorithm, which adjusts the weights based on the gradients to minimize error. However, in practice weight updates do not happen after 
+every individual sample; instead, they occur after each batch of data, depending on the **batch size** used. An **epoch** refers to a full pass 
+through the entire training dataset, where the network processes all data samples, performing forward passes and backpropagation for each batch.
 
 1. The **loss function** (also known as the error function or objective function) measures the error or difference between 
 the predicted output of the neural network and the actual target values for a single training example. 
 In this tutorial loss function will be denoted as :math:`L(y', y)` where :math:`y'` is the predicted output while :math:`y` is the actual output. 
 
-2. The **cost function** is the average or aggregate of the loss function computed over the entire training dataset. It provides a measure of the overall performance of the model across all examples. In this tutorial loss function will be denoted as :math:`J(W, b)` where :math:`w` is weight and :math:`b` is biases in the NN.
+2. The **cost function** is the average or aggregate of the loss function computed over the entire training dataset. It provides a measure of the 
+overall performance of the model across all examples. In this tutorial loss function will be denoted as :math:`J(W, b)` where :math:`w` is weight 
+and :math:`b` is biases in the NN.
 
 
 The network performs the following steps to calculate the cost:
@@ -319,7 +331,7 @@ Where the loss :math:`L(y', y)` is
 
 .. math::
 
-   `L(y', y)` = y' - y = a^{[2]} - y
+   L(y', y) = y' - y = a^{[2]} - y
 
 Since errors can be both positive and negative, we want to ensure they don't cancel each other out. 
 Therefore, in the cost function :math:`J(W, b)` we typically use the square of the error or the absolute value to avoid this issue.
@@ -338,12 +350,12 @@ Therefore, in the cost function :math:`J(W, b)` we typically use the square of t
 Gradient Descent
 ****************
 
-After computing the cost for an epoch, we can adjust the weights and biases to minimize the cost in the following epoch. So we have to find the value of *W* and *b* that gives the minimum value for :math:`J(W, b)`
+After computing the cost, we can adjust the weights and biases to minimize the cost in the next epoch. This is done using an optimization algorithm like 
+gradient descent. The goal is to iteratively update the values of W (weights) and b (biases) in the direction that reduces the cost function :math:`J(W, b)`.
 
-.. image:: ../figs/gradient-descent.png
-.. image:: ../figs/gradient.png
-
-When selecting a cost function for a neural network, we usually choose a convex function to ensure a single local optimal value. To find this optimal value, we continuously update the model parameters:
+In gradient descent, we compute the gradient of the cost function with respect to the weights and biases, which tells us the direction of the steepest 
+increase in the cost. We then adjust the weights and biases by moving in the opposite direction of this gradient to minimize the cost. The update rule 
+is as follows:
 
 .. math::
 
@@ -352,6 +364,14 @@ When selecting a cost function for a neural network, we usually choose a convex 
 
 until we find the optimal values for *w* and *b* that yield the minimum value for :math:`J(W, b)`. Here :math:`\alpha` is the learning rate. 
 
+.. image:: ../figs/gradient-descent.png
+.. image:: ../figs/gradient.png
+
+When selecting a cost function for a neural network, we typically choose a **convex function** because it ensures that there is only a single global 
+optimal value, rather than multiple local minima. A **convex function** has the property that any line segment between two points on the function 
+lies above or on the graph, meaning it has a **single valley shape**. This guarantees that when we minimize the cost, we are moving toward the global 
+minimum, rather than getting stuck in a local minimum. To find this optimal value, we continuously update the model parameters, such as the weights and 
+biases, using optimization techniques like gradient descent. This process moves us steadily toward the minimum point of the cost function.
 
 
 
@@ -378,12 +398,20 @@ until we find the optimal values for *w* and *b* that yield the minimum value fo
          v = 2 \rightarrow J = 6
          v = 2.001 \rightarrow j = 6.003
 
-   In this example when v changes by 0.001 J changes by .003 (6.003 - 6).
+   In this example when v changes by 0.001 J changes by .003 (:math: `6.003 - 6`).
 
 But how does this approach help when the cost function :math:`J` involves weights and biases across multiple layers in the neural network, rather than just 
 a single layer? So we are not dealing with :math:`J(W, b)` but instead :math:`J(W^{[1]}, W^{[1]}, ...., W^{[L]}, b^{[1]}, b^{[2]},...., b^{[L]})`. 
 That is where we use the conscept of **Computational graphs**. 
 
+
+How does this approach help when the cost function :math:`J` involves weights and biases across multiple layers in the neural network, rather than just 
+a single layer? In this case, we are dealing with a more complex function, :math:`J(W, b)` but instead :math:`J(W^{[1]}, W^{[1]}, ...., W^{[L]}, b^{[1]}, b^{[2]},...., b^{[L]})`
+where :math:`L` represents the number of layers in the network.
+
+This complexity is addressed using the concept of **computational graphs**. A **computational graph** is a directed acyclic graph where each node 
+represents an operation (like addition or multiplication) or a variable (such as weights, biases, or activations), and the edges represent the flow of 
+data between operations. 
 
 
 .. admonition:: Explanation
@@ -394,7 +422,7 @@ That is where we use the conscept of **Computational graphs**.
 
    .. math::
 
-      J(a, b c) = 3 \times (a + b \times c) \\
+      J(a, b, c) = 3 \times (a + b \times c) \\
 
    We can rewrite this as:
 
@@ -475,7 +503,8 @@ Based on the cost function, we may need to either excite (increase the influence
 each layer indirectly affects the weights and biases of the preceding layer using the same computational graph concept we discussed earlier. This process 
 is known as backpropagation.
 
-So, how does backpropagation connect with computational graphs? Let's examine a brief (and incomplete) Python code snippet that demonstrates how to update the final hidden layer using the cost function from the output layer.
+So, how does backpropagation connect with computational graphs? Let's examine a brief (and incomplete) Python code snippet that demonstrates how to 
+update the final hidden layer using the cost function from the output layer.
 
 .. code-block:: python
    :linenos:
