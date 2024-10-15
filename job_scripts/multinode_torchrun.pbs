@@ -1,0 +1,42 @@
+#!/bin/bash
+
+#PBS -P vp91
+#PBS -q gpuvolta
+
+#PBS -l ncpus=96
+#PBS -l ngpus=8
+#PBS -l mem=10GB
+#PBS -l walltime=00:20:00 
+
+#PBS -N multinode
+
+module load python3/3.11.0  
+module load cuda/12.3.2
+
+. /scratch/vp91/Training-Venv/pytorch/bin/activate
+
+# Set variables
+if [[ $PBS_NCPUS -ge $PBS_NCI_NCPUS_PER_NODE ]]
+then
+  NNODES=$((PBS_NCPUS / PBS_NCI_NCPUS_PER_NODE))
+else
+  NNODES=1
+fi
+ 
+PROC_PER_NODE=$((PBS_NGPUS / NNODES))
+ 
+MASTER_ADDR=$(cat $PBS_NODEFILE | head -n 1)
+ 
+# Launch script
+LAUNCH_SCRIPT=/scratch/vp91/jxj900/intro-to-pytorch/job_scripts/multinode_torchrun.sh
+ 
+# Set execute permission
+chmod u+x ${LAUNCH_SCRIPT}
+ 
+# Run PyTorch application
+for inode in $(seq 1 $PBS_NCI_NCPUS_PER_NODE $PBS_NCPUS); do
+    echo $inode
+    pbsdsh -n $inode ${LAUNCH_SCRIPT} ${NNODES} ${PROC_PER_NODE} ${MASTER_ADDR} &
+done
+
+wait
