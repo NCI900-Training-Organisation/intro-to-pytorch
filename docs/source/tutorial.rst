@@ -21,9 +21,9 @@ will be provided for you during the session.
     - 10 minutes
     - 30 minutes
   * - Loading a Dataset
-    - 30 minutes
-    - 10 minutes
-    - 40 minutes
+    - 20 minutes
+    - 
+    - 20 minutes
   * - Building a Neural Network
     - 30 minutes
     - 30 minutes

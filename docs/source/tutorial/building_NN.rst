@@ -9,7 +9,7 @@ Building a Neural Network
 
         **Objectives:**
             #. Learn how to implement a neural network in PyTorch.
-            #. Learn the differ modules that go into building a neural network in PyTorch.
+            #. Learn the different modules that go into building a neural network in PyTorch.
 
 Dataset
 *******
@@ -100,7 +100,7 @@ penalizes the model more when the predictions are further from the true labels.
 
 Where, y' is the predicted output and y is the actual otput.
 
-Optmizer
+Optimizer
 *********
 
 Optimizer's main role is to update the model's parameters based on the gradients computed during backpropagation.

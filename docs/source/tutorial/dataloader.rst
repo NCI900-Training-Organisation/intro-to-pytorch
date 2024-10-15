@@ -4,8 +4,7 @@ Loading a Dataset in PyTorch
 .. admonition:: Overview
    :class: Overview
 
-    * **Tutorial:** 15 min
-    * **Exercises:** 15 min
+    * **Tutorial:** 20 min
 
         **Objectives:**
             #. Learn how to use pre-loaded data in PyTorch.
@@ -13,8 +12,8 @@ Loading a Dataset in PyTorch
             #. Learn how to use custom dataloader in PyTorch.
 
 PyTorch offers two data primitives—`torch.utils.data.DataLoader` and `torch.utils.data.Dataset`— which facilitate the use of both pre-loaded datasets and custom data. 
-Dataset is an abstract class that represents a dataset. It defines how the data should be accessed and loaded, allowing users to specify how to retrieve 
-individual data points. DataLoader wraps around a Dataset and provides iterable functionality, handling batching, shuffling, and loading data in 
+**Dataset** is an abstract class that represents a dataset. It defines how the data should be accessed and loaded, allowing users to specify how to retrieve 
+individual data points. **DataLoader** wraps around a Dataset and provides iterable functionality, handling batching, shuffling, and loading data in 
 parallel using multiprocessing.
 
 .. list-table:: Differences Between Dataset and DataLoader
@@ -43,8 +42,10 @@ parallel using multiprocessing.
 Pre-loaded Datasets
 ********************
 
-The `Fashion-MNIST` dataset is an example of a pre-loaded curated dataset. It can be loaded using the following parameters:
+The `Fashion-MNIST` dataset is an example of a pre-loaded curated dataset. It is a collection of 70,000 grayscale images of 28x28 pixels, split 
+into 60,000 training and 10,000 testing samples, representing 10 different classes of fashion items (e.g., shirts, shoes, and bags). 
 
+It can be loaded using the following parameters:
 - `root` specifies the path where the training or test data is stored.
 - `train` indicates whether to load the training or test dataset.
 - `download=True` will download the data from the internet if it's not available at the specified `root`.

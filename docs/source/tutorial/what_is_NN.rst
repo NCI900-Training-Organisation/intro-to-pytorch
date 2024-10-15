@@ -4,11 +4,12 @@ What is a Neural Network?
 .. admonition:: Overview
    :class: Overview
 
-    * **Tutorial:** 45 min
+    * **Tutorial:** 60 min
     * **Exercises:** 0 min
 
         **Objectives:**
-            #. Learn the different parts of a neural network
+            #. Learn the different parts of a neural network.
+            #. Learn the theory behind the neural network.
 
 Neural Networks (NN) are computational models inspired by the human brain, designed to recognize patterns and make data-based decisions. 
 They consist of interconnected layers of nodes, or "neurons," which process and transform input information. Through training, neural networks 
