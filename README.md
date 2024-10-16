@@ -37,6 +37,7 @@ The parameters depend on the content of the workshop. Below are general use only
 
 **Queue**: `normal` *(Note: this is a free text field)*.
 **Compute size**:  `small` 
+
 or if you need GPUs
 **Queue**: `gpuvolta` 
 **Compute size**:  `1gpu` 
