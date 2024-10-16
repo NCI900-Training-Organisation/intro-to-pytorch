@@ -31,7 +31,6 @@ git clone https://github.com/NCI900-Training-Organisation/intro-to-pytorch
 
 ## Step 3.  Prepare JypyterLab in ARE
 At your browser go to [are.nci.org.au](https://are.nci.org.au/), login with your NCI account. At the interface go to **JupyterLab**.    
-<img src="img/ARE_click_jupyter.png" alt="ARE_click_jupyter.png" width="450" height="300">
  
 ## Step 4.  Configure Job Settings
 The parameters depend on the content of the workshop. Below are general use only **unless specified by your instructor**.   
@@ -46,7 +45,6 @@ Below are examples only. Please check the workshop resources for the correct set
 
 Click on the **Advanced options**   
   
-<img src="img/ARE_click_advanced_options.png" alt="ARE_click_advanced_options.png" width="350" height="350">   
 
 **Modules**: `python3/3.11.0 cuda/12.3.2`   *(Note: One space only between modules)*   
 **Python or Conda virtual environment base**: 
