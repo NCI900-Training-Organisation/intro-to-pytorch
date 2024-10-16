@@ -16,7 +16,7 @@ Project membership:
 Create a username directory under /scratch/vp91:  
 
 ```bash
-mkdir /scratch/vp91/$USER
+mkdir -p /scratch/vp91/$USER
 ```
 
 This should be the place where you store all your training material.
@@ -35,8 +35,12 @@ At your browser go to [are.nci.org.au](https://are.nci.org.au/), login with your
 ## Step 4.  Configure Job Settings
 The parameters depend on the content of the workshop. Below are general use only **unless specified by your instructor**.   
 
-**Queue**: `normal` *(Note: this is a free text field)*  
-**Compute size**:  `small`    
+**Queue**: `normal` *(Note: this is a free text field)*.
+**Compute size**:  `small` 
+or if you need GPUs
+**Queue**: `gpuvolta` 
+**Compute size**:  `1gpu` 
+
 **Project**: `vp91`  
 **Storage**: `scratch/vp91`     *(Note: No starting slash)*
 
