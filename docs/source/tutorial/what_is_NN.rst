@@ -15,6 +15,8 @@ Neural Networks (NN) are computational models inspired by the human brain, desig
 They consist of interconnected layers of nodes, or "neurons," which process and transform input information. Through training, neural networks 
 learn to improve their accuracy in tasks like image recognition, language processing, and more.
 
+.. image:: ../figs/NN_first.png
+
 Neuron
 ******
 
@@ -24,17 +26,52 @@ output. Let's break down its role and functionality step by step:
 1. **Input features**: These are the individual measurable properties or characteristics of the data that are fed into the network. Features can be any numerical data -
 for example if we use image as the input, the input features will be the pixel values of the image. 
 
+.. math::
+      
+      x^{(1)} = \begin{bmatrix}
+              x_{1}\\
+              x_{2}\\
+              x_{3}\\ 
+              .    \\
+              .    \\
+              x_{n}
+          \end{bmatrix}
+
 1. **Weights**: Input features are each associated with a weight, which is a numerical value that adjusts 
 the importance of the corresponding input feature. 
+
+.. math::
+      
+      w^{(1)} = \begin{bmatrix}
+              w_{1}\\
+              w_{2}\\
+              w_{3}\\ 
+              .    \\
+              .    \\
+              w_{n}
+          \end{bmatrix}
 
 2. **Calculating the Weighted Sum**: For each neuron, you first multiply each input feature by its corresponding weight. Then, you sum up all these weighted inputs. 
 This sum represents the combined influence of all the input feature on the neuron.
 
+.. math::
+      
+   sum = w_{1} \times x_{1} + w_{2} \times x_{2} + w_{3} \times x_{3} + . . . . +   w_{n} \times x_{n}
+
+
 3. **Adding Bias**: To this weighted sum, you add a bias term. The bias is another adjustable parameter that helps the neuron model more complex patterns 
 by shifting the activation function's input.
 
+.. math::
+      
+   z = sum + b
+
 4. **Activation Function**: Finally, you apply an activation function to the resulting value (the weighted sum plus bias). The activation function introduces
 non-linearity into the neuron's output, which allows the network to learn and represent more complex patterns and relationships.
+
+.. math::
+      
+   a_{output} = f(z)
 
 
 .. image:: ../figs/neuron.drawio.png
@@ -84,7 +121,7 @@ A neural network is a complex system of interconnected neurons organized into la
 creating a stack of neurons that processes data in stages. Mathematically this can be boiled down to a sophisticated function that maps inputs to outputs 
 through numerous parameters. Training involves adjusting these parameters to improve the network's performance and accuracy.
 
-.. image:: ../figs/layers.png
+.. image:: ../figs/NN_sec.png
 
 A neural network consists of three types of layers: input, hidden, and output. The input layer receives and holds raw data, with each neuron representing a 
 feature of the data. Hidden layers process this data by applying weights, biases, and activation functions to extract and learn complex patterns. These layers 
@@ -108,10 +145,10 @@ processed information from the hidden layers. Each layer plays a crucial role in
               x_{n}^{(1)} & x_{n}^{(2)}  & x_{n}^{(3)} & .... & x_{n}^{(m)} 
           \end{bmatrix}
 
-   :math:`X^{(1)}` will represent the entire vector n x 1 vector representing first data sample while 
-   :math:`x_{3}^{(1)}` will represent the third feature in first data sample.
+   :math:`X^{(1)}` will represent the entire vector n x 1 vector representing first input sample while 
+   :math:`x_{3}^{(1)}` will represent the third feature in first input sample.
 
-   The figure below illustrates a 2-layer neural network where a single data sample (with 3 featues) is provided as input.
+   The figure below illustrates a 2-layer neural network where a single input sample (with 3 features) is provided as input.
    The input layer is not counted as one of the layers.
 
    .. image:: ../figs/2layer_NN.drawio.png
@@ -190,15 +227,15 @@ processed information from the hidden layers. Each layer plays a crucial role in
    
    .. math::
       
-      a_{1}^{[1](1)} = f(Z_{1}^{[1](1)}) = W_{1}^{[1]T} \times X^{(1)} + b_{1}^{[1]}
+      a_{1}^{[1](1)} = f(Z_{1}^{[1](1)}) = f(W_{1}^{[1]T} \times X^{(1)} + b_{1}^{[1]})
 
    .. math::
 
-      a_{2}^{[1](1)} = f(Z_{2}^{[1](1)}) = W_{2}^{[1]T} \times X^{(1)} + b_{2}^{[1]}
+      a_{2}^{[1](1)} = f(Z_{2}^{[1](1)}) = f(W_{2}^{[1]T} \times X^{(1)} + b_{2}^{[1]})
 
    .. math::
 
-      a_{3}^{[1](1)} = f(Z_{3}^{[1](1)}) = W_{3}^{[1]T} \times X^{(1)} + b_{3}^{[1]}
+      a_{3}^{[1](1)} = f(Z_{3}^{[1](1)}) = f(W_{3}^{[1]T} \times X^{(1)} + b_{3}^{[1]})
 
    Where :math:`W_{1}^{[1]T}, W_{2}^{[1]T}, W_{3}^{[1]T}` are transpose of vectors of size :math:`(3 \times 1)`.
    
@@ -276,12 +313,12 @@ processed information from the hidden layers. Each layer plays a crucial role in
    .. math::
       
       a^{[1]} = \begin{bmatrix}
-                  a_{1}^{(1)} & a_{1}^{(2)} & .... & a_{1}^{(m)} \\  
-                  a_{2}^{(1)} & a_{2}^{(2)} & .... & a_{2}^{(m)} \\ 
-                  a_{3}^{(1)} & a_{3}^{(2)} & .... & a_{3}^{(m)} \\
+                  a_{1}^{[1](1)} & a_{1}^{[1](2)} & .... & a_{1}^{[1](m)} \\  
+                  a_{2}^{[1](1)} & a_{2}^{[1](2)} & .... & a_{2}^{[1](m)} \\ 
+                  a_{3}^{[1](1)} & a_{3}^{[1](2)} & .... & a_{3}^{[1](m)} \\
+                  . & .          & ....           & .    \\
                   . & . & .... & . \\
-                  . & . & .... & . \\
-                  a_{a}^{(1)} & a_{a}^{(2)} & .... & a_{a}^{(m)} \\
+                  a_{a}^{[1](1)} & a_{a}^{[1](2)} & .... & a_{a}^{[1](m)} \\
                \end{bmatrix}
 
 This will involve a GEneral Matrix multiplication (GEMM) operation :math:`W^{[1]T} \times X` where :math:`X` will be the entire input sample 
@@ -303,9 +340,12 @@ Loss Function and Cost Functions
 
 During training, for each batch of input samples, calculations are 
 propagated through the network in a process called the **forward pass**. After each forward pass, the weights of the network are updated using 
-the **backpropagation** algorithm, which adjusts the weights based on the gradients to minimize error. However, in practice weight updates do not happen after 
-every individual sample; instead, they occur after each batch of data, depending on the **batch size** used. An **epoch** refers to a full pass 
-through the entire training dataset, where the network processes all data samples, performing forward passes and backpropagation for each batch.
+the **backpropagation** algorithm, which adjusts the weights based on the gradients to minimize error. 
+
+.. important::
+   In practice weight updates do not happen after  every individual sample; instead, they occur after each batch of data, depending on the **batch size** used. 
+
+An **epoch** refers to a full pass through the entire training dataset, where the network processes all data samples, performing forward passes and backpropagation for each batch.
 
 1. The **loss function** (also known as the error function or objective function) measures the error or difference between 
 the predicted output of the neural network and the actual target values for a single training example. 
@@ -535,7 +575,10 @@ update the final hidden layer using the cost function from the output layer.
    b2 = b2 - alpha * db2
 
 
-Where :math:`dW1 = \frac{\partial J}{\partial W_{1}}`, :math:`dW2 = \frac{\partial J}{\partial W_{2}}`, :math:`db1 = \frac{\partial J}{\partial b_{1}}` and :math:`db2 = \frac{\partial J}{\partial b_{2}}`. In practice, we will replace the for loop with a vectorized implementation to improve efficiency.
+Where :math:`dW1 = \frac{\partial J}{\partial W_{1}}`, :math:`dW2 = \frac{\partial J}{\partial W_{2}}`, :math:`db1 = \frac{\partial J}{\partial b_{1}}` and :math:`db2 = \frac{\partial J}{\partial b_{2}}`. 
+
+.. important::
+   In practice, we will replace the for loop with a vectorized implementation to improve efficiency.
 
 Convergence
 ***************
