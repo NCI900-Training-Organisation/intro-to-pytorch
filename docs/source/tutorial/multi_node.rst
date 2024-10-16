@@ -131,6 +131,7 @@ use all the 4 GPUs on each node.
 
     - `rdzv_backend`: The backend used for the rendezvous process (c10d is default for PyTorch).
     - `rdzv_endpoint`: The network address of the rendezvous server, combining `MASTER_ADDR` and `MASTER_PORT`.
+    - `rdzv_id` : A unique identifier for the rendezvous session that will coordinate the distributed processes. This is helpful when multiple distributed training jobs are running on the same cluster/network, as it ensures that different jobs are kept separate from each other
 
 Alternative Options
 ********************
