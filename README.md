@@ -35,10 +35,10 @@ At your browser go to [are.nci.org.au](https://are.nci.org.au/), login with your
 ## Step 4.  Configure Job Settings
 The parameters depend on the content of the workshop. Below are general use only **unless specified by your instructor**.   
 
-**Queue**: `normal` *(Note: this is a free text field)*.
-**Compute size**:  `small` 
+**Queue**: `normal` *(Note: this is a free text field)*. 
+**Compute size**:  `small`  
 
-or if you need GPUs
+or if you need GPUs 
 **Queue**: `gpuvolta` 
 **Compute size**:  `1gpu` 
 
