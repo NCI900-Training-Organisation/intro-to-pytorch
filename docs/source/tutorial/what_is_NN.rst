@@ -385,7 +385,7 @@ Therefore, in the cost function :math:`J(W, b)` we typically use the square of t
 
       .. math::
          
-         J(W, b) = \frac{1}{2} \times \sum_{n=1}^{m} (y_{train} - y_{network})^{2} 
+         J(W, b) = \frac{1}{m} \times \sum_{n=1}^{m} (y_{train} - y_{network})^{2} 
 
 
 Gradient Descent
@@ -401,7 +401,7 @@ is as follows:
 .. math::
 
    w := w - \alpha \times \frac{\partial J(W, b)}{\partial w} \\
-   b := w - \alpha \times \frac{\partial J(W, b)}{\partial b}
+   b := b - \alpha \times \frac{\partial J(W, b)}{\partial b}
 
 until we find the optimal values for *w* and *b* that yield the minimum value for :math:`J(W, b)`. Here :math:`\alpha` is the learning rate. 
 

@@ -55,15 +55,31 @@ When training, both the model and all the data it operates on should be on the s
  
     for epoch in range(n_epochs):
         for i in range(0, len(X_tensor), batch_size):
+
+            # For each mini-batch, the input data (Xbatch) is transferred to the GPU (device), 
+            # allowing the computations to run on the GPU for faster training.
             Xbatch = X_tensor[i:i+batch_size].to(device) # move the tensor to GPU
 
+            # The model takes the input mini-batch (Xbatch) and makes predictions (y_pred).
             y_pred = class_model(Xbatch)
         
+            # The corresponding expected output labels for the current mini-batch are also 
+            # transferred to the GPU.
             ybatch = y_tensor[i:i+batch_size].to(device) # move the tensor to GPU
         
+            # The loss function calculates the error (loss) between the predicted values (y_pred) 
+            # and the actual labels (ybatch).
             loss = loss_fn(y_pred, ybatch)
+
+            # Before backpropagation, the gradients of the model parameters are reset to zero. 
+            # This ensures that the gradients from the previous iteration do not accumulate.
             optimizer.zero_grad()
+
+            # Backpropagation is performed to compute the gradients of the loss with respect to 
+            # the model parameters.
             loss.backward()
+
+            # The optimizer updates the model's parameters using the computed gradients.
             optimizer.step()
 
 .. admonition:: Exercise

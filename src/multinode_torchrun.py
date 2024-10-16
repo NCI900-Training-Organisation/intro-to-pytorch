@@ -52,11 +52,7 @@ class PimaDataset(Dataset):
         return feature, label
 
 def setup():
-    #rank = int(os.environ['RANK'])
-    #world_size = int(os.environ['WORLD_SIZE'])
-    #dist.init_process_group("nccl", rank=rank, world_size=world_size)
     dist.init_process_group("nccl")
-    #torch.cuda.set_device(rank)
     torch.cuda.set_device(int(os.environ["LOCAL_RANK"]))
 
     
@@ -65,8 +61,8 @@ def cleanup():
 
 def prepare(rank, world_size, batch_size=32, pin_memory=False, num_workers=0):
     dataset = PimaDataset(datapath)
+
     sampler = DistributedSampler(dataset, num_replicas=world_size, rank=rank, shuffle=False, drop_last=False)
-    
     dataloader = DataLoader(dataset, batch_size=batch_size, pin_memory=pin_memory, num_workers=num_workers, drop_last=False, shuffle=False, sampler=sampler)
     
     return dataloader

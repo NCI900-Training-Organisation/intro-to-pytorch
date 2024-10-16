@@ -27,6 +27,11 @@ ensuring that each process operates correctly within the distributed environment
 
 .. image:: ../figs/global_local.png
 
+Launching a multi-node training involves three key steps:
+1. A PBS script is used to allocate the required nodes and execute a shell script on each allocated node.
+2. The shell script then invokes the Python program.
+3. The Python program initiates the training process.
+
 
 PBS Script
 **********
@@ -86,7 +91,25 @@ As Gadi uses the PBS job scheduler we can use it to run the training on multiple
     `PROC_PER_NODE`: The number of GPUs per node.
     `NNODES`: The total number of nodes.
 
-Here, `pbsdsh` launches the `multinode_torchrun.sh` script simultaneously on all nodes. The `multinode_torchrun.sh` script contains the following:
+Here, `pbsdsh` launches the `multinode_torchrun.sh` script simultaneously on all nodes. 
+
+.. admonition:: Explanation
+
+    1. `pbsdsh`: This command is part of PBS and allows a job to execute commands on a distributed set of nodes allocated by the scheduler. It enables running commands or scripts across multiple nodes in parallel.
+    2. `-n $inode`: This specifies the target node for the command or script to be executed on. Here, $inode is a variable that refers to the specific node number or index assigned by the PBS scheduler. Each node in a distributed job is identified by a unique number, and pbsdsh -n ensures the command runs on the node corresponding to $inode.
+    3. `${LAUNCH_SCRIPT}`: This is the script or command that will be executed on each node. ${LAUNCH_SCRIPT} is a placeholder for the actual script name, which likely contains commands to start the distributed processes on each node.
+
+    The following values are passed to the script multinode_torchrun.sh:
+
+    1. `${NNODES}`: This variable holds the number of total nodes involved in the job. This is passed as an argument to the LAUNCH_SCRIPT, so that the script knows how many nodes are available for the job.
+    2. `${PROC_PER_NODE}`: This variable indicates the number of processes per node that should be launched. In a distributed setting, this is typically set to the number of GPUs or CPU cores to utilize per node.
+    3. `${MASTER_ADDR}`: This variable is the address of the master node or rank 0 process, which is responsible for coordinating the distributed processes (especially important in PyTorch or MPI-based distributed training). This address is passed to the script so that worker nodes can connect to the master node.
+
+
+Shell Script
+************
+
+The `multinode_torchrun.sh` script contains the following:
 
 .. code-block:: console
     :linenos:
@@ -114,6 +137,19 @@ Here, `pbsdsh` launches the `multinode_torchrun.sh` script simultaneously on all
 Where `torchrun` will launch the training program `distributed_data_parallel.py` on each node and
 use all the 4 GPUs on each node.
 
+.. admonition:: Explanation
+    
+    1. `${1}` represents the total number of nodes.
+    2. `${2}` specifies the total number of processes per node.
+    3. `${3}` contains the address of the master node.
+
+    These values are passed to the shell script when it is invoked.
+
+
+.. important::
+    When using torchrun (the recommended utility for launching distributed training in PyTorch), the 
+    values for environment variables LOCAL_RANK, RANK, and WORLD_SIZE are automatically set by are set by
+    PyTorch and passed to each process.
 
 
 .. admonition:: Explanation
@@ -126,6 +162,7 @@ use all the 4 GPUs on each node.
 
     - `rdzv_backend`: The backend used for the rendezvous process (c10d is default for PyTorch).
     - `rdzv_endpoint`: The network address of the rendezvous server, combining `MASTER_ADDR` and `MASTER_PORT`.
+    - `rdzv_id` : A unique identifier for the rendezvous session that will coordinate the distributed processes. This is helpful when multiple distributed training jobs are running on the same cluster/network, as it ensures that different jobs are kept separate from each other
 
 Alternative Options
 ********************
