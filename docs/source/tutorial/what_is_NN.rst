@@ -313,12 +313,12 @@ processed information from the hidden layers. Each layer plays a crucial role in
    .. math::
       
       a^{[1]} = \begin{bmatrix}
-                  a_{1}^{(1)} & a_{1}^{(2)} & .... & a_{1}^{(m)} \\  
-                  a_{2}^{(1)} & a_{2}^{(2)} & .... & a_{2}^{(m)} \\ 
-                  a_{3}^{(1)} & a_{3}^{(2)} & .... & a_{3}^{(m)} \\
+                  a_{1}^{[1](1)} & a_{1}^{[1](2)} & .... & a_{1}^{[1](m)} \\  
+                  a_{2}^{[1](1)} & a_{2}^{[1](2)} & .... & a_{2}^{[1](m)} \\ 
+                  a_{3}^{[1](1)} & a_{3}^{[1](2)} & .... & a_{3}^{[1](m)} \\
+                  . & .          & ....           & .    \\
                   . & . & .... & . \\
-                  . & . & .... & . \\
-                  a_{a}^{(1)} & a_{a}^{(2)} & .... & a_{a}^{(m)} \\
+                  a_{a}^{[1](1)} & a_{a}^{[1](2)} & .... & a_{a}^{[1](m)} \\
                \end{bmatrix}
 
 This will involve a GEneral Matrix multiplication (GEMM) operation :math:`W^{[1]T} \times X` where :math:`X` will be the entire input sample 
