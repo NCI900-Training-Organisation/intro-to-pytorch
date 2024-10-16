@@ -115,6 +115,11 @@ Where `torchrun` will launch the training program `distributed_data_parallel.py`
 use all the 4 GPUs on each node.
 
 
+.. important::
+    When using torchrun (the recommended utility for launching distributed training in PyTorch), the 
+    values for environment variables LOCAL_RANK, RANK, and WORLD_SIZE are automatically set by are set by
+    PyTorch and passed to each process.
+
 
 .. admonition:: Explanation
    :class: attention

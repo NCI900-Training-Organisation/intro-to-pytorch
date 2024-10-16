@@ -45,7 +45,9 @@ In DistributedDataParallel (DDP), a *Process Group* is a collection of processes
 .. admonition:: Explanation
    :class: attention
 
-   Here, `nccl` is the backend that determines how communication between processes is handled. Other common backends are `gloo`, a CPU-based backend, and `mpi`
+   Here, `nccl` is the backend that determines how communication between processes is handled. 
+   NCCL is optimized for multi-GPU communication and is recommended for use with NVIDIA GPUs.
+   Other common backends are `gloo`, a CPU-based backend, and `mpi`
    the where MPI (Message Passing Interface) based backend.
 
 Splitting the Dataloader
@@ -73,6 +75,12 @@ To split the data across multiple GPUs we use `DistributedSampler`.
     - `drop_last` -   When working with datasets in distributed training, it is common for the total number of samples in the dataset to not be perfectly divisible by the product of the batch size and the number of replicas. When `drop_last` is set to *True*, the last batch that is not full will be dropped. 
 
 and a distributed `DataLoader`.
+
+**DistributedSampler** is used to divide the dataset among multiple processes (workers). It ensures 
+that each process only gets its portion of the data. When we create the **dataloader** we pass the 
+DistributedSampler object to the dataloader object (*sampler=sampler*). This ensures each process gets
+a unique subset of data for distributed training.
+
 
 .. admonition:: Explanation
    :class: attention
@@ -103,7 +111,6 @@ synchronizes gradients automatically.
     - `device-ids`: Specifies the GPU device(s) to which this process's model should be mapped. The rank typically corresponds to the index of the current process within the distributed setup, and in a single-node setup with multiple GPUs, rank is often the GPU ID. For example, if rank=0, it means this process will use GPU 0.
     - `output_device` : Specifies the device where the output of the model should be stored.
     - `find_unused_parameters` : DDP assumes all model parameters are used in every forward pass, and it synchronizes their gradients accordingly. Setting `find_unused_parameters=True`` ensures that DDP will only synchronize the gradients of parameters that are actually used, preventing errors and unnecessary communication overhead.
-
 
 .. admonition:: Exercise
    :class: todo
