@@ -43,7 +43,7 @@ or if you need GPUs
 **Compute size**:  `1gpu`   
 
 **Project**: `vp91`  
-**Storage**: `scratch/vp91`     *(Note: No starting slash)*
+**Storage**: `gdata/vp91+scratch/vp91`     *(Note: No starting slash)*
 
 ## Step 5.  Configure Modules and Environments
 Below are examples only. Please check the workshop resources for the correct settings.   
@@ -53,5 +53,5 @@ Click on the **Advanced options**
 
 **Modules**: `python3/3.11.0 cuda/12.3.2`   *(Note: One space only between modules)*   
 **Python or Conda virtual environment base**: 
-`/scratch/vp91/Training-Venv/pytorch`  
+`/g/data/vp91/Training-Venvs/intro_to_pytorch`  
 
