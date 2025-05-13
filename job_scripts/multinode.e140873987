@@ -1,0 +1,10 @@
+Loading python3/3.11.0
+  Loading requirement: intel-mkl/2022.2.0
+Loading python3/3.11.0
+  Loading requirement: intel-mkl/2022.2.0
+/scratch/vp91/jxj900/intro-to-pytorch/job_scripts/multinode_torchrun.sh: line 9: /scratch/vp91/Training-Venv/pytorch/bin/activate: No such file or directory
+/scratch/vp91/jxj900/intro-to-pytorch/job_scripts/multinode_torchrun.sh: line 18: torchrun: command not found
+Loading python3/3.11.0
+  Loading requirement: intel-mkl/2022.2.0
+/scratch/vp91/jxj900/intro-to-pytorch/job_scripts/multinode_torchrun.sh: line 9: /scratch/vp91/Training-Venv/pytorch/bin/activate: No such file or directory
+/scratch/vp91/jxj900/intro-to-pytorch/job_scripts/multinode_torchrun.sh: line 18: torchrun: command not found
